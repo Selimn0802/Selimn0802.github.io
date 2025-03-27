@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>final关键字</title>
+      <link href="/2025/03/27/final%E5%85%B3%E9%94%AE%E5%AD%97/"/>
+      <url>/2025/03/27/final%E5%85%B3%E9%94%AE%E5%AD%97/</url>
+      
+        <content type="html"><![CDATA[<p><code>final</code> 关键字在 Java 中主要用于修饰<strong>变量、方法和类</strong>，用来表示<strong>不可更改</strong>的特性。具体用法如下：</p><hr><h2 id="1-修饰变量（常量）"><a href="#1-修饰变量（常量）" class="headerlink" title="1. 修饰变量（常量）"></a>1. 修饰变量（常量）</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">java复制编辑final int MAX_VALUE = 100;<br>MAX_VALUE = 200; // ❌ 编译错误，不能修改 final 变量<br></code></pre></td></tr></table></figure><ul><li><strong>修饰基本数据类型</strong>：值不能被修改。</li><li><strong>修饰引用类型</strong>：引用地址不能修改，但对象的内容可以更改。</li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">java复制编辑final List&lt;String&gt; list = new ArrayList&lt;&gt;();<br>list.add(&quot;Hello&quot;);  // ✅ 可以修改内容<br>list = new ArrayList&lt;&gt;();  // ❌ 不能修改引用地址<br></code></pre></td></tr></table></figure><hr><h2 id="2-修饰方法（防止方法被重写）"><a href="#2-修饰方法（防止方法被重写）" class="headerlink" title="2. 修饰方法（防止方法被重写）"></a>2. 修饰方法（防止方法被重写）</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">java复制编辑class Parent &#123;<br>    final void show() &#123;<br>        System.out.println(&quot;Parent show&quot;);<br>    &#125;<br>&#125;<br><br>class Child extends Parent &#123;<br>    // ❌ 编译错误，不能重写 final 方法<br>    void show() &#123; <br>        System.out.println(&quot;Child show&quot;); <br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure><hr><h2 id="3-修饰类（防止类被继承）"><a href="#3-修饰类（防止类被继承）" class="headerlink" title="3. 修饰类（防止类被继承）"></a>3. 修饰类（防止类被继承）</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">java复制编辑final class Animal &#123;<br>    void speak() &#123;<br>        System.out.println(&quot;Animal speaks&quot;);<br>    &#125;<br>&#125;<br><br>// ❌ 编译错误，不能继承 final 类<br>class Dog extends Animal &#123; <br>&#125;<br></code></pre></td></tr></table></figure><hr><h2 id="4-final-关键字的特殊用法"><a href="#4-final-关键字的特殊用法" class="headerlink" title="4. final 关键字的特殊用法"></a>4. final 关键字的特殊用法</h2><h3 id="（1）修饰成员变量（必须初始化）"><a href="#（1）修饰成员变量（必须初始化）" class="headerlink" title="（1）修饰成员变量（必须初始化）"></a>（1）修饰成员变量（必须初始化）</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">java复制编辑class Test &#123;<br>    final int num; // 必须在构造器或代码块中初始化<br><br>    Test(int num) &#123;<br>        this.num = num;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure><h3 id="（2）修饰方法参数（参数值不能被修改）"><a href="#（2）修饰方法参数（参数值不能被修改）" class="headerlink" title="（2）修饰方法参数（参数值不能被修改）"></a>（2）修饰方法参数（参数值不能被修改）</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">java复制编辑void print(final int x) &#123;<br>    x = 20; // ❌ 编译错误<br>&#125;<br></code></pre></td></tr></table></figure><h3 id="（3）配合-static-final（常量）"><a href="#（3）配合-static-final（常量）" class="headerlink" title="（3）配合 static final（常量）"></a>（3）配合 <code>static final</code>（常量）</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">java<br><br><br>复制编辑<br>static final double PI = 3.14159;<br></code></pre></td></tr></table></figure><hr><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul><li><strong>修饰变量</strong>：变量值不可变（基本类型值不可变，引用类型地址不可变）。</li><li><strong>修饰方法</strong>：防止子类重写方法。</li><li><strong>修饰类</strong>：防止类被继承。</li></ul><p>这样使用 <code>final</code> 主要是为了<strong>保证安全性</strong>、<strong>提高程序的可读性</strong>，并且在某些情况下还能<strong>优化性能</strong>（JVM 可进行编译优化）。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Java </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Markdown语法</title>
       <link href="/2025/03/25/Markdown%E8%AF%AD%E6%B3%95/"/>
       <url>/2025/03/25/Markdown%E8%AF%AD%E6%B3%95/</url>
@@ -94,7 +113,7 @@
     
     
     <entry>
-      <title>tags</title>
+      <title>标签</title>
       <link href="/tags/index.html"/>
       <url>/tags/index.html</url>
       
