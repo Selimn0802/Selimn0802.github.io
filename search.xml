@@ -116,7 +116,7 @@
       
       <categories>
           
-          <category> Python </category>
+          <category> Java </category>
           
           <category> 常用API </category>
           
@@ -549,20 +549,9 @@
     
     
     <entry>
-      <title>Java</title>
-      <link href="/Java/index.html"/>
-      <url>/Java/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Python</title>
-      <link href="/Python/index.html"/>
-      <url>/Python/index.html</url>
+      <title>分类</title>
+      <link href="/categories/index.html"/>
+      <url>/categories/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
