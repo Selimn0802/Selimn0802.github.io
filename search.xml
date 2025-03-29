@@ -4,6 +4,32 @@
   
     
     <entry>
+      <title></title>
+      <link href="/2025/03/29/09-05-%E7%BA%BF%E7%A8%8B%E6%B1%A0/"/>
+      <url>/2025/03/29/09-05-%E7%BA%BF%E7%A8%8B%E6%B1%A0/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title></title>
+      <link href="/2025/03/29/09-04-%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E4%B8%8E%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5/"/>
+      <url>/2025/03/29/09-04-%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E4%B8%8E%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>正则表达式</title>
       <link href="/2025/03/29/13-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
       <url>/2025/03/29/13-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/</url>
@@ -17,6 +43,12 @@
           
       </categories>
       
+      
+        <tags>
+            
+            <tag> 基础 </tag>
+            
+        </tags>
       
     </entry>
     
@@ -65,6 +97,31 @@
         <tags>
             
             <tag> 线程 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>String</title>
+      <link href="/2025/03/28/14-String/"/>
+      <url>/2025/03/28/14-String/</url>
+      
+        <content type="html"><![CDATA[<p>在 Java 中，<code>String</code> 类是最常用的数据类型之一，它代表不可变的字符串。<code>String</code> 提供了丰富的 API，用于字符串操作，如查找、替换、截取、格式化等。  </p><hr><h2 id="✅-1-创建字符串"><a href="#✅-1-创建字符串" class="headerlink" title="✅ 1. 创建字符串"></a>✅ <strong>1. 创建字符串</strong></h2><p>Java 提供了多种方式来创建字符串：  </p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">String</span> <span class="hljs-variable">s1</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;Hello&quot;</span>;  <span class="hljs-comment">// 直接赋值（推荐）</span><br><span class="hljs-type">String</span> <span class="hljs-variable">s2</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>(<span class="hljs-string">&quot;Hello&quot;</span>);  <span class="hljs-comment">// 通过构造方法（不推荐）</span><br><span class="hljs-type">char</span>[] chars = &#123;<span class="hljs-string">&#x27;H&#x27;</span>, <span class="hljs-string">&#x27;e&#x27;</span>, <span class="hljs-string">&#x27;l&#x27;</span>, <span class="hljs-string">&#x27;l&#x27;</span>, <span class="hljs-string">&#x27;o&#x27;</span>&#125;;<br><span class="hljs-type">String</span> <span class="hljs-variable">s3</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>(chars);  <span class="hljs-comment">// 通过字符数组创建</span><br></code></pre></td></tr></table></figure><hr><h2 id="✅-2-字符串基本操作"><a href="#✅-2-字符串基本操作" class="headerlink" title="✅ 2. 字符串基本操作"></a>✅ <strong>2. 字符串基本操作</strong></h2><h3 id="（1）获取字符串长度"><a href="#（1）获取字符串长度" class="headerlink" title="（1）获取字符串长度"></a><strong>（1）获取字符串长度</strong></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">String</span> <span class="hljs-variable">str</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;Hello, World!&quot;</span>;<br><span class="hljs-type">int</span> <span class="hljs-variable">length</span> <span class="hljs-operator">=</span> str.length();<br>System.out.println(length); <span class="hljs-comment">// 13</span><br></code></pre></td></tr></table></figure><h3 id="（2）获取字符串中的某个字符"><a href="#（2）获取字符串中的某个字符" class="headerlink" title="（2）获取字符串中的某个字符"></a><strong>（2）获取字符串中的某个字符</strong></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">char</span> <span class="hljs-variable">ch</span> <span class="hljs-operator">=</span> str.charAt(<span class="hljs-number">0</span>);<br>System.out.println(ch); <span class="hljs-comment">// &#x27;H&#x27;</span><br></code></pre></td></tr></table></figure><h3 id="（3）字符串拼接"><a href="#（3）字符串拼接" class="headerlink" title="（3）字符串拼接"></a><strong>（3）字符串拼接</strong></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">String</span> <span class="hljs-variable">s1</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;Hello&quot;</span>;<br><span class="hljs-type">String</span> <span class="hljs-variable">s2</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot; World&quot;</span>;<br><span class="hljs-type">String</span> <span class="hljs-variable">result</span> <span class="hljs-operator">=</span> s1.concat(s2);<br>System.out.println(result); <span class="hljs-comment">// &quot;Hello World&quot;</span><br></code></pre></td></tr></table></figure><blockquote><p><strong>⚠ 注意</strong>：尽量使用 <code>StringBuilder</code> 进行拼接，<code>String</code> 的拼接会创建新的对象，效率较低。</p></blockquote><hr><h2 id="✅-3-查找与匹配"><a href="#✅-3-查找与匹配" class="headerlink" title="✅ 3. 查找与匹配"></a>✅ <strong>3. 查找与匹配</strong></h2><h3 id="（1）判断是否包含子字符串"><a href="#（1）判断是否包含子字符串" class="headerlink" title="（1）判断是否包含子字符串"></a><strong>（1）判断是否包含子字符串</strong></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">boolean</span> <span class="hljs-variable">contains</span> <span class="hljs-operator">=</span> str.contains(<span class="hljs-string">&quot;World&quot;</span>);<br>System.out.println(contains); <span class="hljs-comment">// true</span><br></code></pre></td></tr></table></figure><h3 id="（2）判断是否以某个前缀或后缀开头"><a href="#（2）判断是否以某个前缀或后缀开头" class="headerlink" title="（2）判断是否以某个前缀或后缀开头"></a><strong>（2）判断是否以某个前缀或后缀开头</strong></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">System.out.println(str.startsWith(<span class="hljs-string">&quot;Hello&quot;</span>)); <span class="hljs-comment">// true</span><br>System.out.println(str.endsWith(<span class="hljs-string">&quot;!&quot;</span>)); <span class="hljs-comment">// true</span><br></code></pre></td></tr></table></figure><h3 id="（3）获取子字符串的位置"><a href="#（3）获取子字符串的位置" class="headerlink" title="（3）获取子字符串的位置"></a><strong>（3）获取子字符串的位置</strong></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">int</span> <span class="hljs-variable">index</span> <span class="hljs-operator">=</span> str.indexOf(<span class="hljs-string">&quot;World&quot;</span>); <span class="hljs-comment">// 7</span><br><span class="hljs-type">int</span> <span class="hljs-variable">lastIndex</span> <span class="hljs-operator">=</span> str.lastIndexOf(<span class="hljs-string">&quot;o&quot;</span>); <span class="hljs-comment">// 8</span><br></code></pre></td></tr></table></figure><hr><h2 id="✅-4-字符串截取"><a href="#✅-4-字符串截取" class="headerlink" title="✅ 4. 字符串截取"></a>✅ <strong>4. 字符串截取</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">String</span> <span class="hljs-variable">sub</span> <span class="hljs-operator">=</span> str.substring(<span class="hljs-number">7</span>); <span class="hljs-comment">// 从索引 7 开始截取</span><br>System.out.println(sub); <span class="hljs-comment">// &quot;World!&quot;</span><br><br><span class="hljs-type">String</span> <span class="hljs-variable">sub2</span> <span class="hljs-operator">=</span> str.substring(<span class="hljs-number">7</span>, <span class="hljs-number">12</span>); <span class="hljs-comment">// 截取索引 [7, 12)</span><br>System.out.println(sub2); <span class="hljs-comment">// &quot;World&quot;</span><br></code></pre></td></tr></table></figure><hr><h2 id="✅-5-替换字符串"><a href="#✅-5-替换字符串" class="headerlink" title="✅ 5. 替换字符串"></a>✅ <strong>5. 替换字符串</strong></h2><h3 id="（1）替换单个字符"><a href="#（1）替换单个字符" class="headerlink" title="（1）替换单个字符"></a><strong>（1）替换单个字符</strong></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">String</span> <span class="hljs-variable">newStr</span> <span class="hljs-operator">=</span> str.replace(<span class="hljs-string">&#x27;o&#x27;</span>, <span class="hljs-string">&#x27;0&#x27;</span>);<br>System.out.println(newStr); <span class="hljs-comment">// &quot;Hell0, W0rld!&quot;</span><br></code></pre></td></tr></table></figure><h3 id="（2）替换子字符串"><a href="#（2）替换子字符串" class="headerlink" title="（2）替换子字符串"></a><strong>（2）替换子字符串</strong></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">String</span> <span class="hljs-variable">newStr2</span> <span class="hljs-operator">=</span> str.replace(<span class="hljs-string">&quot;World&quot;</span>, <span class="hljs-string">&quot;Java&quot;</span>);<br>System.out.println(newStr2); <span class="hljs-comment">// &quot;Hello, Java!&quot;</span><br></code></pre></td></tr></table></figure><h3 id="（3）使用正则表达式替换"><a href="#（3）使用正则表达式替换" class="headerlink" title="（3）使用正则表达式替换"></a><strong>（3）使用正则表达式替换</strong></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">String</span> <span class="hljs-variable">replaced</span> <span class="hljs-operator">=</span> str.replaceAll(<span class="hljs-string">&quot;\\w+&quot;</span>, <span class="hljs-string">&quot;X&quot;</span>);<br>System.out.println(replaced); <span class="hljs-comment">// &quot;X, X!&quot;</span><br></code></pre></td></tr></table></figure><hr><h2 id="✅-6-分割字符串"><a href="#✅-6-分割字符串" class="headerlink" title="✅ 6. 分割字符串"></a>✅ <strong>6. 分割字符串</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">String</span> <span class="hljs-variable">data</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;apple,banana,orange&quot;</span>;<br>String[] fruits = data.split(<span class="hljs-string">&quot;,&quot;</span>);<br><span class="hljs-keyword">for</span> (String fruit : fruits) &#123;<br>    System.out.println(fruit);<br>&#125;<br></code></pre></td></tr></table></figure><p><strong>输出：</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">apple<br>banana<br>orange<br></code></pre></td></tr></table></figure><hr><h2 id="✅-7-大小写转换"><a href="#✅-7-大小写转换" class="headerlink" title="✅ 7. 大小写转换"></a>✅ <strong>7. 大小写转换</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">System.out.println(str.toUpperCase()); <span class="hljs-comment">// &quot;HELLO, WORLD!&quot;</span><br>System.out.println(str.toLowerCase()); <span class="hljs-comment">// &quot;hello, world!&quot;</span><br></code></pre></td></tr></table></figure><hr><h2 id="✅-8-去除首尾空格"><a href="#✅-8-去除首尾空格" class="headerlink" title="✅ 8. 去除首尾空格"></a>✅ <strong>8. 去除首尾空格</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">String</span> <span class="hljs-variable">spaced</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;   Hello World!   &quot;</span>;<br>System.out.println(spaced.trim()); <span class="hljs-comment">// &quot;Hello World!&quot;</span><br></code></pre></td></tr></table></figure><hr><h2 id="✅-9-字符串比较"><a href="#✅-9-字符串比较" class="headerlink" title="✅ 9. 字符串比较"></a>✅ <strong>9. 字符串比较</strong></h2><h3 id="（1）区分大小写"><a href="#（1）区分大小写" class="headerlink" title="（1）区分大小写"></a><strong>（1）区分大小写</strong></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">String</span> <span class="hljs-variable">a</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;hello&quot;</span>;<br><span class="hljs-type">String</span> <span class="hljs-variable">b</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;Hello&quot;</span>;<br>System.out.println(a.equals(b)); <span class="hljs-comment">// false</span><br></code></pre></td></tr></table></figure><h3 id="（2）忽略大小写比较"><a href="#（2）忽略大小写比较" class="headerlink" title="（2）忽略大小写比较"></a><strong>（2）忽略大小写比较</strong></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">System.out.println(a.equalsIgnoreCase(b)); <span class="hljs-comment">// true</span><br></code></pre></td></tr></table></figure><h3 id="（3）按字典顺序比较"><a href="#（3）按字典顺序比较" class="headerlink" title="（3）按字典顺序比较"></a><strong>（3）按字典顺序比较</strong></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java">System.out.println(<span class="hljs-string">&quot;abc&quot;</span>.compareTo(<span class="hljs-string">&quot;abd&quot;</span>)); <span class="hljs-comment">// -1</span><br>System.out.println(<span class="hljs-string">&quot;abc&quot;</span>.compareTo(<span class="hljs-string">&quot;abc&quot;</span>)); <span class="hljs-comment">// 0</span><br>System.out.println(<span class="hljs-string">&quot;abd&quot;</span>.compareTo(<span class="hljs-string">&quot;abc&quot;</span>)); <span class="hljs-comment">// 1</span><br></code></pre></td></tr></table></figure><hr><h2 id="✅-10-格式化字符串"><a href="#✅-10-格式化字符串" class="headerlink" title="✅ 10. 格式化字符串"></a>✅ <strong>10. 格式化字符串</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">String</span> <span class="hljs-variable">formatted</span> <span class="hljs-operator">=</span> String.format(<span class="hljs-string">&quot;My name is %s and I am %d years old.&quot;</span>, <span class="hljs-string">&quot;Alice&quot;</span>, <span class="hljs-number">25</span>);<br>System.out.println(formatted); <br><span class="hljs-comment">// &quot;My name is Alice and I am 25 years old.&quot;</span><br></code></pre></td></tr></table></figure><hr><h2 id="✅-11-判断字符串是否为空"><a href="#✅-11-判断字符串是否为空" class="headerlink" title="✅ 11. 判断字符串是否为空"></a>✅ <strong>11. 判断字符串是否为空</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">String</span> <span class="hljs-variable">emptyStr</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;&quot;</span>;<br>System.out.println(emptyStr.isEmpty()); <span class="hljs-comment">// true</span><br>System.out.println(emptyStr.isBlank()); <span class="hljs-comment">// true（Java 11+）</span><br></code></pre></td></tr></table></figure><hr><h2 id="✅-12-使用-StringBuilder-进行高效拼接"><a href="#✅-12-使用-StringBuilder-进行高效拼接" class="headerlink" title="✅ 12. 使用 StringBuilder 进行高效拼接"></a>✅ <strong>12. 使用 <code>StringBuilder</code> 进行高效拼接</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">StringBuilder</span> <span class="hljs-variable">sb</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">StringBuilder</span>();<br>sb.append(<span class="hljs-string">&quot;Hello&quot;</span>).append(<span class="hljs-string">&quot; &quot;</span>).append(<span class="hljs-string">&quot;World!&quot;</span>);<br>System.out.println(sb.toString()); <span class="hljs-comment">// &quot;Hello World!&quot;</span><br></code></pre></td></tr></table></figure><hr><h2 id="✅-总结"><a href="#✅-总结" class="headerlink" title="✅ 总结"></a>✅ <strong>总结</strong></h2><table><thead><tr><th>方法</th><th>作用</th></tr></thead><tbody><tr><td><code>length()</code></td><td>获取字符串长度</td></tr><tr><td><code>charAt(index)</code></td><td>获取指定索引位置的字符</td></tr><tr><td><code>concat(str)</code></td><td>拼接字符串</td></tr><tr><td><code>contains(str)</code></td><td>判断是否包含子字符串</td></tr><tr><td><code>startsWith(str) / endsWith(str)</code></td><td>判断是否以某字符串开头&#x2F;结尾</td></tr><tr><td><code>indexOf(str) / lastIndexOf(str)</code></td><td>获取子字符串的索引位置</td></tr><tr><td><code>substring(start, end)</code></td><td>截取子字符串</td></tr><tr><td><code>replace(old, new)</code></td><td>替换字符串</td></tr><tr><td><code>replaceAll(regex, new)</code></td><td>使用正则表达式替换字符串</td></tr><tr><td><code>split(regex)</code></td><td>按照正则表达式分割字符串</td></tr><tr><td><code>toUpperCase() / toLowerCase()</code></td><td>转换大小写</td></tr><tr><td><code>trim()</code></td><td>去除首尾空格</td></tr><tr><td><code>equals(str) / equalsIgnoreCase(str)</code></td><td>字符串比较</td></tr><tr><td><code>compareTo(str)</code></td><td>按字典顺序比较</td></tr><tr><td><code>isEmpty() / isBlank()</code></td><td>判断字符串是否为空</td></tr><tr><td><code>String.format()</code></td><td>字符串格式化</td></tr><tr><td><code>StringBuilder</code></td><td>高效字符串拼接</td></tr></tbody></table><hr>]]></content>
+      
+      
+      <categories>
+          
+          <category> Java </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 常用API </tag>
             
         </tags>
       
@@ -137,6 +194,12 @@
       </categories>
       
       
+        <tags>
+            
+            <tag> 函数式编程 </tag>
+            
+        </tags>
+      
     </entry>
     
     
@@ -155,6 +218,12 @@
           
       </categories>
       
+      
+        <tags>
+            
+            <tag> 常用API </tag>
+            
+        </tags>
       
     </entry>
     
@@ -175,6 +244,12 @@
       </categories>
       
       
+        <tags>
+            
+            <tag> 常用API </tag>
+            
+        </tags>
+      
     </entry>
     
     
@@ -193,6 +268,12 @@
           
       </categories>
       
+      
+        <tags>
+            
+            <tag> 基础 </tag>
+            
+        </tags>
       
     </entry>
     
@@ -213,6 +294,12 @@
       </categories>
       
       
+        <tags>
+            
+            <tag> 基础 </tag>
+            
+        </tags>
+      
     </entry>
     
     
@@ -231,6 +318,12 @@
           
       </categories>
       
+      
+        <tags>
+            
+            <tag> 基础 </tag>
+            
+        </tags>
       
     </entry>
     
@@ -276,6 +369,12 @@
       </categories>
       
       
+        <tags>
+            
+            <tag> 基础 </tag>
+            
+        </tags>
+      
     </entry>
     
     
@@ -294,6 +393,12 @@
           
       </categories>
       
+      
+        <tags>
+            
+            <tag> 基础 </tag>
+            
+        </tags>
       
     </entry>
     
@@ -314,6 +419,12 @@
       </categories>
       
       
+        <tags>
+            
+            <tag> 基础 </tag>
+            
+        </tags>
+      
     </entry>
     
     
@@ -332,6 +443,12 @@
           
       </categories>
       
+      
+        <tags>
+            
+            <tag> 基础 </tag>
+            
+        </tags>
       
     </entry>
     
@@ -431,6 +548,17 @@
       <title>关于</title>
       <link href="/about/index.html"/>
       <url>/about/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Java</title>
+      <link href="/Java/index.html"/>
+      <url>/Java/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
