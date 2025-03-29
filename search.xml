@@ -560,9 +560,9 @@
     
     
     <entry>
-      <title>Java</title>
-      <link href="/Java/index.html"/>
-      <url>/Java/index.html</url>
+      <title>Python</title>
+      <link href="/categories/Python/index.html"/>
+      <url>/categories/Python/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -571,9 +571,9 @@
     
     
     <entry>
-      <title>Python</title>
-      <link href="/Python/index.html"/>
-      <url>/Python/index.html</url>
+      <title>Java</title>
+      <link href="/categories/Java/index.html"/>
+      <url>/categories/Java/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
