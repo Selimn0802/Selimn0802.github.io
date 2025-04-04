@@ -1,0 +1,315 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>TCP与UDP | Firefly</title><meta name="author" content="Selimn"><meta name="copyright" content="Selimn"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="好的！我将根据你提供的要求，写一篇详细且结构清晰的关于 TCP 与 UDP 协议对比的文章：  ✅ TCP 与 UDP 协议对比在计算机网络中，TCP（传输控制协议）和UDP（用户数据报协议）是两种常见的传输层协议。它们各自具有不同的特点和应用场景，理解它们的区别对于网络编程和网络应用的设计至关重要。  1️⃣ 什么是 TCP？TCP（Transmission Control Protocol，传">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TCP与UDP">
+<meta property="og:url" content="http://example.com/2025/04/04/6.2%20TCP%E4%B8%8EUDP/index.html">
+<meta property="og:site_name" content="Firefly">
+<meta property="og:description" content="好的！我将根据你提供的要求，写一篇详细且结构清晰的关于 TCP 与 UDP 协议对比的文章：  ✅ TCP 与 UDP 协议对比在计算机网络中，TCP（传输控制协议）和UDP（用户数据报协议）是两种常见的传输层协议。它们各自具有不同的特点和应用场景，理解它们的区别对于网络编程和网络应用的设计至关重要。  1️⃣ 什么是 TCP？TCP（Transmission Control Protocol，传">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/default_cover/paimeng%20(23).jpg">
+<meta property="article:published_time" content="2025-04-04T04:00:00.000Z">
+<meta property="article:modified_time" content="2025-04-04T12:33:08.699Z">
+<meta property="article:author" content="Selimn">
+<meta property="article:tag" content="网络编程">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/default_cover/paimeng%20(23).jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "TCP与UDP",
+  "url": "http://example.com/2025/04/04/6.2%20TCP%E4%B8%8EUDP/",
+  "image": "http://example.com/img/default_cover/paimeng%20(23).jpg",
+  "datePublished": "2025-04-04T04:00:00.000Z",
+  "dateModified": "2025-04-04T12:33:08.699Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Selimn",
+      "url": "http://example.com/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/"><link rel="canonical" href="http://example.com/2025/04/04/6.2%20TCP%E4%B8%8EUDP/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          const hour = new Date().getHours()
+          const isNight = hour <= 6 || hour >= 18
+          if (theme === undefined) isNight ? activateDarkMode() : activateLightMode()
+          else theme === 'light' ? activateLightMode() : activateDarkMode()
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":230,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-right"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'TCP与UDP',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/avatar/Elysia.jpg" onerror="this.onerror=null;this.src='/img/default_cover/dai.jpg'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">40</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">16</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://github.com/Selimn0802/Selimn0802.github.io/blob/main/img/background/Ayaka_2.jpg?raw=true);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/avatar/Elysia.jpg" alt="Logo"><span class="site-name">Firefly</span></a><a class="nav-page-title" href="/"><span class="site-name">TCP与UDP</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">TCP与UDP</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-04-04T04:00:00.000Z" title="发表于 2025-04-04 12:00:00">2025-04-04</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-04-04T12:33:08.699Z" title="更新于 2025-04-04 20:33:08">2025-04-04</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Java/">Java</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Java/%E5%8A%A0%E5%BC%BA/">加强</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Java/%E5%8A%A0%E5%BC%BA/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/">网络编程</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">1.4k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>4分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><div id="post-outdate-notice" data="{&quot;limitDay&quot;:365,&quot;messagePrev&quot;:&quot;It has been&quot;,&quot;messageNext&quot;:&quot;days since the last update, the content of the article may be outdated.&quot;,&quot;postUpdate&quot;:&quot;2025-04-04 20:33:08&quot;}" hidden></div><p>好的！我将根据你提供的要求，写一篇详细且结构清晰的关于 <strong>TCP 与 UDP</strong> 协议对比的文章：</p>
+<hr>
+<h1 id="✅-TCP-与-UDP-协议对比"><a href="#✅-TCP-与-UDP-协议对比" class="headerlink" title="✅ TCP 与 UDP 协议对比"></a>✅ <strong>TCP 与 UDP 协议对比</strong></h1><p>在计算机网络中，<strong>TCP</strong>（传输控制协议）和<strong>UDP</strong>（用户数据报协议）是两种常见的传输层协议。它们各自具有不同的特点和应用场景，理解它们的区别对于网络编程和网络应用的设计至关重要。</p>
+<hr>
+<h2 id="1️⃣-什么是-TCP？"><a href="#1️⃣-什么是-TCP？" class="headerlink" title="1️⃣ 什么是 TCP？"></a><strong>1️⃣ 什么是 TCP？</strong></h2><p><strong>TCP（Transmission Control Protocol，传输控制协议）</strong> 是一种面向连接的协议，提供可靠的数据传输服务。TCP 在数据传输前需要建立连接，并通过一系列的确认机制来确保数据的可靠性。</p>
+<h3 id="TCP-的特点："><a href="#TCP-的特点：" class="headerlink" title="TCP 的特点："></a><strong>TCP 的特点：</strong></h3><ul>
+<li><strong>面向连接</strong>：TCP 在发送数据之前需要通过三次握手建立连接，确保通信双方准备好进行数据传输。</li>
+<li><strong>可靠性</strong>：TCP 使用序列号、确认应答（ACK）、重传机制、数据完整性检查等手段保证数据的可靠传输。</li>
+<li><strong>顺序性</strong>：保证数据按发送顺序到达接收端。</li>
+<li><strong>流量控制</strong>：TCP 通过滑动窗口机制控制发送方的数据发送速度，以避免网络拥堵。</li>
+<li><strong>拥塞控制</strong>：TCP 会根据网络的拥堵情况动态调整数据发送速率，避免造成网络堵塞。</li>
+</ul>
+<h3 id="TCP-工作过程："><a href="#TCP-工作过程：" class="headerlink" title="TCP 工作过程："></a><strong>TCP 工作过程：</strong></h3><ol>
+<li><p><strong>建立连接（三次握手）</strong>：</p>
+<ul>
+<li>客户端发送连接请求（SYN）。</li>
+<li>服务器响应连接请求（SYN+ACK）。</li>
+<li>客户端确认连接（ACK）。</li>
+</ul>
+</li>
+<li><p><strong>数据传输</strong>：</p>
+<ul>
+<li>通过数据分段传输，确保数据按顺序到达。</li>
+<li>每个数据段都会被确认。</li>
+</ul>
+</li>
+<li><p><strong>断开连接（四次挥手）</strong>：</p>
+<ul>
+<li>双方通过四次挥手协议断开连接。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="2️⃣-什么是-UDP？"><a href="#2️⃣-什么是-UDP？" class="headerlink" title="2️⃣ 什么是 UDP？"></a><strong>2️⃣ 什么是 UDP？</strong></h2><p><strong>UDP（User Datagram Protocol，用户数据报协议）</strong> 是一种无连接的协议，提供较少的可靠性保障。UDP 不像 TCP 那样需要建立连接，数据传输过程中也没有确认应答和重传机制。</p>
+<h3 id="UDP-的特点："><a href="#UDP-的特点：" class="headerlink" title="UDP 的特点："></a><strong>UDP 的特点：</strong></h3><ul>
+<li><strong>无连接</strong>：UDP 在数据传输之前不需要建立连接，直接发送数据。</li>
+<li><strong>不可靠性</strong>：UDP 不保证数据包的到达，也不保证顺序，可能会丢失、重复或乱序。</li>
+<li><strong>速度快</strong>：由于没有建立连接和确认机制，UDP 的传输速度相对较快。</li>
+<li><strong>适用于实时通信</strong>：适合用于实时性要求较高的场景，如视频会议、语音通话等。</li>
+</ul>
+<h3 id="UDP-工作过程："><a href="#UDP-工作过程：" class="headerlink" title="UDP 工作过程："></a><strong>UDP 工作过程：</strong></h3><ol>
+<li><p><strong>数据传输</strong>：</p>
+<ul>
+<li>客户端直接将数据包发送给接收端，不需要建立连接。</li>
+</ul>
+</li>
+<li><p><strong>数据包</strong>：</p>
+<ul>
+<li>每个 UDP 数据包是独立的，没有顺序保障。</li>
+</ul>
+</li>
+<li><p><strong>传输完毕</strong>：</p>
+<ul>
+<li>一旦数据包被发送，它们就不再被管理，接收方不会确认收到的每个数据包。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="3️⃣-TCP-与-UDP-的对比"><a href="#3️⃣-TCP-与-UDP-的对比" class="headerlink" title="3️⃣ TCP 与 UDP 的对比"></a><strong>3️⃣ TCP 与 UDP 的对比</strong></h2><table>
+<thead>
+<tr>
+<th>特性</th>
+<th><strong>TCP</strong></th>
+<th><strong>UDP</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>连接方式</strong></td>
+<td>面向连接，需建立连接（三次握手）</td>
+<td>无连接，不需要建立连接</td>
+</tr>
+<tr>
+<td><strong>可靠性</strong></td>
+<td>高，提供可靠的数据传输，确保数据到达并按顺序到达</td>
+<td>低，不保证数据到达，可能丢失或乱序</td>
+</tr>
+<tr>
+<td><strong>数据传输</strong></td>
+<td>按顺序传输，使用序列号和确认应答保证顺序</td>
+<td>无顺序保证，每个数据包独立传输</td>
+</tr>
+<tr>
+<td><strong>流量控制</strong></td>
+<td>有，使用滑动窗口控制数据发送速度</td>
+<td>无，数据包会直接发送，不考虑流量控制</td>
+</tr>
+<tr>
+<td><strong>拥塞控制</strong></td>
+<td>有，根据网络状况调整发送速率</td>
+<td>无，不会根据网络状况调整发送速率</td>
+</tr>
+<tr>
+<td><strong>应用场景</strong></td>
+<td>适用于文件传输、网页浏览、邮件传输等</td>
+<td>适用于实时性要求高的应用，如视频直播、语音通话、在线游戏等</td>
+</tr>
+<tr>
+<td><strong>开销</strong></td>
+<td>较高，需要建立和维持连接，数据包较大</td>
+<td>较低，不需要连接建立和维护，数据包较小</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="4️⃣-TCP-与-UDP-适用的场景"><a href="#4️⃣-TCP-与-UDP-适用的场景" class="headerlink" title="4️⃣ TCP 与 UDP 适用的场景"></a><strong>4️⃣ TCP 与 UDP 适用的场景</strong></h2><h3 id="✅-TCP-适用场景："><a href="#✅-TCP-适用场景：" class="headerlink" title="✅ TCP 适用场景："></a>✅ <strong>TCP 适用场景：</strong></h3><ul>
+<li><strong>文件传输</strong>：如 FTP 协议，保证文件的完整性和顺序性。</li>
+<li><strong>网页浏览</strong>：如 HTTP 协议，确保网页内容的完整性。</li>
+<li><strong>电子邮件</strong>：如 SMTP 协议，确保邮件的可靠发送。</li>
+<li><strong>数据库连接</strong>：如 JDBC 协议，确保数据的准确传输。</li>
+</ul>
+<h3 id="✅-UDP-适用场景："><a href="#✅-UDP-适用场景：" class="headerlink" title="✅ UDP 适用场景："></a>✅ <strong>UDP 适用场景：</strong></h3><ul>
+<li><strong>视频会议</strong>：如 WebRTC 协议，实时传输音视频数据，即使丢失一些数据也不会影响体验。</li>
+<li><strong>语音通话</strong>：如 VoIP 协议，实时语音传输，要求低延迟而非数据可靠性。</li>
+<li><strong>在线游戏</strong>：如在线多人游戏，游戏中的位置信息和状态更新，丢包对游戏影响不大。</li>
+<li><strong>实时数据广播</strong>：如 DNS 查询、网络时间协议（NTP）。</li>
+</ul>
+<hr>
+<h2 id="✅-总结"><a href="#✅-总结" class="headerlink" title="✅ 总结"></a>✅ <strong>总结</strong></h2><table>
+<thead>
+<tr>
+<th>特性</th>
+<th><strong>TCP</strong></th>
+<th><strong>UDP</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>连接方式</strong></td>
+<td>需要建立连接（三次握手）</td>
+<td>无连接，数据包直接发送</td>
+</tr>
+<tr>
+<td><strong>可靠性</strong></td>
+<td>高，确保数据可靠传输</td>
+<td>低，不保证数据到达</td>
+</tr>
+<tr>
+<td><strong>传输效率</strong></td>
+<td>相对较慢，建立连接、确认应答等增加了开销</td>
+<td>快，直接传输数据</td>
+</tr>
+<tr>
+<td><strong>应用场景</strong></td>
+<td>适用于文件传输、网页浏览、邮件等需要高可靠性的应用</td>
+<td>适用于实时通信、在线游戏等对延迟要求高的应用</td>
+</tr>
+</tbody></table>
+<p>🎯 <strong>TCP 和 UDP 各有优缺点，选择合适的协议取决于应用需求：</strong></p>
+<ul>
+<li>如果需要保证数据的完整性和顺序，使用 <strong>TCP</strong>。</li>
+<li>如果需要低延迟，且容忍丢失少量数据，使用 <strong>UDP</strong>。</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">Selimn</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2025/04/04/6.2%20TCP%E4%B8%8EUDP/">http://example.com/2025/04/04/6.2%20TCP%E4%B8%8EUDP/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">Firefly</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/">网络编程</a></div><div class="post-share"><div class="social-share" data-image="/img/default_cover/paimeng%20(23).jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2025/04/03/6.1.4%20%E5%8D%8F%E8%AE%AE/" title="协议"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/default_cover/paimeng%20(17).jpg" onerror="onerror=null;src='/img/default_cover/dai.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">协议</div></div><div class="info-2"><div class="info-item-1">✅ Java 网络编程基础：协议（Protocol）详解在计算机网络中，协议是通信的规则和标准，它规定了数据如何格式化、传输、接收与处理。 在 Java 网络编程中，我们主要关注的协议有：TCP、UDP、HTTP、FTP 等。  1️⃣ 什么是网络协议？网络协议定义了两台主机通信时要遵循的规则，类似于人与人交流时的“语言”。 👉 没有协议，网络通信就像“鸡同鸭讲”。  2️⃣ 常见网络协议及用途   协议 类型 特点 应用场景    TCP 面向连接 可靠、数据有序、速度略慢 网页浏览、文件传输、聊天程序   UDP 无连接 不可靠、数据无序、速度快、效率高 视频直播、语音通话、在线游戏   HTTP 应用层 基于 TCP 的协议，用于浏览器和服务器之间的通信 网站访问、接口调用   FTP 应用层 基于 TCP，用于文件上传与下载 远程文件传输   SMTP 应用层 用于发送电子邮件 邮件客户端发送邮件   POP3&#x2F;IMAP 应用层 用于接收电子邮件 邮件客户端接收邮件    3️⃣ TCP 与 UDP...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2025/04/03/6.1.1%20IP/" title="IP"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/default_cover/paimeng%20(1).jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-04-03</div><div class="info-item-2">IP</div></div><div class="info-2"><div class="info-item-1">✅ IP 地址详解（Internet Protocol）IP（Internet Protocol）是网络通信中的核心协议之一，主要用于为网络中的每台设备分配唯一的地址，实现数据在网络中的传输与定位。  1️⃣ IP 地址的作用IP 地址相当于“网络中的门牌号”，用来唯一标识网络上的一台主机。当你访问网站、下载文件、发送邮件时，系统就是通过 IP 地址找到目标主机。  2️⃣ IP 地址的分类📌 按地址类型分类   类型 描述 示例    IPv4 使用 32 位地址，写作 4 个十进制数 192.168.0.1   IPv6 使用 128 位地址，支持更多设备 2001:0db8:85a3::8a2e:0370:7334   📌 按使用范围分类   类型 描述 示例 IP 范围    公网 IP 在互联网中唯一 8.8.8.8（Google DNS）   私有 IP（内网） 局域网中使用，不可直接访问公网 192.168.0.0&#x2F;16，10.0.0.0&#x2F;8    3️⃣ IPv4 地址详解📌 IPv4 地址结构IPv4 地址由 4 段 0~255...</div></div></div></a><a class="pagination-related" href="/2025/04/03/6.1.2%20InetAddress/" title="InetAddress"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/default_cover/paimeng%20(14).jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-04-03</div><div class="info-item-2">InetAddress</div></div><div class="info-2"><div class="info-item-1">✅ Java 网络编程：InetAddress 类详解在 Java 中，InetAddress 类用于表示 IP 地址（IPv4 或 IPv6），它是 Java 网络编程中最常用的类之一，属于 java.net 包。  1️⃣ InetAddress 的作用 表示一个 IP 地址（域名或 IP 本身） 提供主机名与 IP 地址的解析功能 是进行 Socket 编程的基础类之一   2️⃣ 常用方法   方法名 说明    getLocalHost() 获取本机的 InetAddress 对象   getByName(String host) 根据主机名或 IP 获取对应的 InetAddress 对象   getAllByName(String host) 获取与指定主机名关联的所有 IP 地址   getHostName() 获取该 IP 对象对应的主机名   getHostAddress() 获取该对象的 IP 地址字符串   isReachable(int timeout) 判断该地址是否可以在指定时间内连通    3️⃣ 示例一：获取本机 IP...</div></div></div></a><a class="pagination-related" href="/2025/04/03/6.1.4%20%E5%8D%8F%E8%AE%AE/" title="协议"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/default_cover/paimeng%20(17).jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-04-03</div><div class="info-item-2">协议</div></div><div class="info-2"><div class="info-item-1">✅ Java 网络编程基础：协议（Protocol）详解在计算机网络中，协议是通信的规则和标准，它规定了数据如何格式化、传输、接收与处理。 在 Java 网络编程中，我们主要关注的协议有：TCP、UDP、HTTP、FTP 等。  1️⃣ 什么是网络协议？网络协议定义了两台主机通信时要遵循的规则，类似于人与人交流时的“语言”。 👉 没有协议，网络通信就像“鸡同鸭讲”。  2️⃣ 常见网络协议及用途   协议 类型 特点 应用场景    TCP 面向连接 可靠、数据有序、速度略慢 网页浏览、文件传输、聊天程序   UDP 无连接 不可靠、数据无序、速度快、效率高 视频直播、语音通话、在线游戏   HTTP 应用层 基于 TCP 的协议，用于浏览器和服务器之间的通信 网站访问、接口调用   FTP 应用层 基于 TCP，用于文件上传与下载 远程文件传输   SMTP 应用层 用于发送电子邮件 邮件客户端发送邮件   POP3&#x2F;IMAP 应用层 用于接收电子邮件 邮件客户端接收邮件    3️⃣ TCP 与 UDP...</div></div></div></a><a class="pagination-related" href="/2025/04/03/6.1.3%20%E7%AB%AF%E5%8F%A3/" title="端口"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/default_cover/paimeng%20(10).jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-04-03</div><div class="info-item-2">端口</div></div><div class="info-2"><div class="info-item-1">✅ Java 网络编程基础：端口（Port）详解在计算机网络中，端口（Port）是用于区分不同网络服务的数字标识，它与 IP 地址共同组成网络通信的“地址”。  1️⃣ 什么是端口？ IP 地址标识一台主机 端口号标识该主机上的某个应用程序（网络服务）  👉 通信时数据发送的目标为：IP 地址 + 端口号  2️⃣ 端口号的范围   范围 说明    0 ~ 1023 系统端口，保留给操作系统使用，如 HTTP（80）、FTP（21）等   1024 ~ 49151 注册端口，用于用户进程或服务（如 MySQL：3306）   49152 ~ 65535 动态端口 &#x2F; 私有端口，临时分配的端口    3️⃣ 常见端口号   服务&#x2F;协议 默认端口号    HTTP 80   HTTPS 443   FTP 21   SSH 22   Telnet 23   MySQL 3306   Oracle 1521   Redis 6379    4️⃣ Java 中的端口使用场景   使用方式 示例类    创建服务器并绑定端口 ServerSocket(int...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/avatar/Elysia.jpg" onerror="this.onerror=null;this.src='/img/default_cover/dai.jpg'" alt="avatar"/></div><div class="author-info-name">Selimn</div><div class="author-info-description">Where there is a will, there is a way.</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">40</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">16</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Selimn0802"><i class="fab fa-github"></i><span>🛴前往小家...</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/Selimn0802" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:3036198337@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">博客，启动！</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E2%9C%85-TCP-%E4%B8%8E-UDP-%E5%8D%8F%E8%AE%AE%E5%AF%B9%E6%AF%94"><span class="toc-text">✅ TCP 与 UDP 协议对比</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%EF%B8%8F%E2%83%A3-%E4%BB%80%E4%B9%88%E6%98%AF-TCP%EF%BC%9F"><span class="toc-text">1️⃣ 什么是 TCP？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#TCP-%E7%9A%84%E7%89%B9%E7%82%B9%EF%BC%9A"><span class="toc-text">TCP 的特点：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TCP-%E5%B7%A5%E4%BD%9C%E8%BF%87%E7%A8%8B%EF%BC%9A"><span class="toc-text">TCP 工作过程：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%EF%B8%8F%E2%83%A3-%E4%BB%80%E4%B9%88%E6%98%AF-UDP%EF%BC%9F"><span class="toc-text">2️⃣ 什么是 UDP？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#UDP-%E7%9A%84%E7%89%B9%E7%82%B9%EF%BC%9A"><span class="toc-text">UDP 的特点：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UDP-%E5%B7%A5%E4%BD%9C%E8%BF%87%E7%A8%8B%EF%BC%9A"><span class="toc-text">UDP 工作过程：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%EF%B8%8F%E2%83%A3-TCP-%E4%B8%8E-UDP-%E7%9A%84%E5%AF%B9%E6%AF%94"><span class="toc-text">3️⃣ TCP 与 UDP 的对比</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4%EF%B8%8F%E2%83%A3-TCP-%E4%B8%8E-UDP-%E9%80%82%E7%94%A8%E7%9A%84%E5%9C%BA%E6%99%AF"><span class="toc-text">4️⃣ TCP 与 UDP 适用的场景</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%9C%85-TCP-%E9%80%82%E7%94%A8%E5%9C%BA%E6%99%AF%EF%BC%9A"><span class="toc-text">✅ TCP 适用场景：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%9C%85-UDP-%E9%80%82%E7%94%A8%E5%9C%BA%E6%99%AF%EF%BC%9A"><span class="toc-text">✅ UDP 适用场景：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%9C%85-%E6%80%BB%E7%BB%93"><span class="toc-text">✅ 总结</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/04/04/6.2%20TCP%E4%B8%8EUDP/" title="TCP与UDP"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/default_cover/paimeng%20(23).jpg" onerror="this.onerror=null;this.src='/img/default_cover/dai.jpg'" alt="TCP与UDP"/></a><div class="content"><a class="title" href="/2025/04/04/6.2%20TCP%E4%B8%8EUDP/" title="TCP与UDP">TCP与UDP</a><time datetime="2025-04-04T04:00:00.000Z" title="发表于 2025-04-04 12:00:00">2025-04-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/04/03/6.1.4%20%E5%8D%8F%E8%AE%AE/" title="协议"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/default_cover/paimeng%20(17).jpg" onerror="this.onerror=null;this.src='/img/default_cover/dai.jpg'" alt="协议"/></a><div class="content"><a class="title" href="/2025/04/03/6.1.4%20%E5%8D%8F%E8%AE%AE/" title="协议">协议</a><time datetime="2025-04-03T12:18:00.000Z" title="发表于 2025-04-03 20:18:00">2025-04-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/04/03/6.1.3%20%E7%AB%AF%E5%8F%A3/" title="端口"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/default_cover/paimeng%20(10).jpg" onerror="this.onerror=null;this.src='/img/default_cover/dai.jpg'" alt="端口"/></a><div class="content"><a class="title" href="/2025/04/03/6.1.3%20%E7%AB%AF%E5%8F%A3/" title="端口">端口</a><time datetime="2025-04-03T12:17:00.000Z" title="发表于 2025-04-03 20:17:00">2025-04-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/04/03/6.1.2%20InetAddress/" title="InetAddress"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/default_cover/paimeng%20(14).jpg" onerror="this.onerror=null;this.src='/img/default_cover/dai.jpg'" alt="InetAddress"/></a><div class="content"><a class="title" href="/2025/04/03/6.1.2%20InetAddress/" title="InetAddress">InetAddress</a><time datetime="2025-04-03T12:16:00.000Z" title="发表于 2025-04-03 20:16:00">2025-04-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/04/03/6.1.1%20IP/" title="IP"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/default_cover/paimeng%20(1).jpg" onerror="this.onerror=null;this.src='/img/default_cover/dai.jpg'" alt="IP"/></a><div class="content"><a class="title" href="/2025/04/03/6.1.1%20IP/" title="IP">IP</a><time datetime="2025-04-03T12:15:00.000Z" title="发表于 2025-04-03 20:15:00">2025-04-03</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2025 By Selimn</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.3.5</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"></div><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="30" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"live2d-widget-model-wanko"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body></html>
