@@ -1,0 +1,305 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>缓冲流 | Firefly</title><meta name="author" content="Selimn"><meta name="copyright" content="Selimn"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Java 缓冲流（Buffered Stream）详解在 Java IO 中，缓冲流（Buffered Stream） 是对基本 IO 流的 增强，它提供 缓冲区 来减少直接与硬盘或网络交互的次数，从而提高 读写效率。 Java 提供了 字节缓冲流 和 字符缓冲流 两大类，用于字节流（InputStream&#x2F;OutputStream）和字符流（Reader&#x2F;Writer）的优化">
+<meta property="og:type" content="article">
+<meta property="og:title" content="缓冲流">
+<meta property="og:url" content="http://example.com/2025/04/01/4.4.2%20%E7%BC%93%E5%86%B2%E6%B5%81/index.html">
+<meta property="og:site_name" content="Firefly">
+<meta property="og:description" content="Java 缓冲流（Buffered Stream）详解在 Java IO 中，缓冲流（Buffered Stream） 是对基本 IO 流的 增强，它提供 缓冲区 来减少直接与硬盘或网络交互的次数，从而提高 读写效率。 Java 提供了 字节缓冲流 和 字符缓冲流 两大类，用于字节流（InputStream&#x2F;OutputStream）和字符流（Reader&#x2F;Writer）的优化">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/default_cover/paimeng%20(26).jpg">
+<meta property="article:published_time" content="2025-04-01T04:05:00.000Z">
+<meta property="article:modified_time" content="2025-04-03T11:09:24.658Z">
+<meta property="article:author" content="Selimn">
+<meta property="article:tag" content="File-IO流">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/default_cover/paimeng%20(26).jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "缓冲流",
+  "url": "http://example.com/2025/04/01/4.4.2%20%E7%BC%93%E5%86%B2%E6%B5%81/",
+  "image": "http://example.com/img/default_cover/paimeng%20(26).jpg",
+  "datePublished": "2025-04-01T04:05:00.000Z",
+  "dateModified": "2025-04-03T11:09:24.658Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Selimn",
+      "url": "http://example.com/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/"><link rel="canonical" href="http://example.com/2025/04/01/4.4.2%20%E7%BC%93%E5%86%B2%E6%B5%81/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          const hour = new Date().getHours()
+          const isNight = hour <= 6 || hour >= 18
+          if (theme === undefined) isNight ? activateDarkMode() : activateLightMode()
+          else theme === 'light' ? activateLightMode() : activateDarkMode()
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":230,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-right"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '缓冲流',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/avatar/Elysia.jpg" onerror="this.onerror=null;this.src='/img/default_cover/dai.jpg'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">35</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">7</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">15</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://github.com/Selimn0802/Selimn0802.github.io/blob/main/img/background/Ayaka_2.jpg?raw=true);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/avatar/Elysia.jpg" alt="Logo"><span class="site-name">Firefly</span></a><a class="nav-page-title" href="/"><span class="site-name">缓冲流</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">缓冲流</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-04-01T04:05:00.000Z" title="发表于 2025-04-01 12:05:00">2025-04-01</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-04-03T11:09:24.658Z" title="更新于 2025-04-03 19:09:24">2025-04-03</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Java/">Java</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Java/%E5%8A%A0%E5%BC%BA/">加强</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Java/%E5%8A%A0%E5%BC%BA/File-IO%E6%B5%81/">File-IO流</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Java/%E5%8A%A0%E5%BC%BA/File-IO%E6%B5%81/IO%E6%B5%81/">IO流</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">1.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>4分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><div id="post-outdate-notice" data="{&quot;limitDay&quot;:365,&quot;messagePrev&quot;:&quot;It has been&quot;,&quot;messageNext&quot;:&quot;days since the last update, the content of the article may be outdated.&quot;,&quot;postUpdate&quot;:&quot;2025-04-03 19:09:24&quot;}" hidden></div><h1 id="Java-缓冲流（Buffered-Stream）详解"><a href="#Java-缓冲流（Buffered-Stream）详解" class="headerlink" title="Java 缓冲流（Buffered Stream）详解"></a><strong>Java 缓冲流（Buffered Stream）详解</strong></h1><p>在 Java IO 中，<strong>缓冲流（Buffered Stream）</strong> 是对基本 IO 流的 <strong>增强</strong>，它提供 <strong>缓冲区</strong> 来减少直接与硬盘或网络交互的次数，从而提高 <strong>读写效率</strong>。</p>
+<p>Java 提供了 <strong>字节缓冲流</strong> 和 <strong>字符缓冲流</strong> 两大类，用于字节流（InputStream&#x2F;OutputStream）和字符流（Reader&#x2F;Writer）的优化。</p>
+<hr>
+<h2 id="✅-1-缓冲流的作用"><a href="#✅-1-缓冲流的作用" class="headerlink" title="✅ 1. 缓冲流的作用"></a>✅ <strong>1. 缓冲流的作用</strong></h2><ul>
+<li><strong>减少 IO 操作次数</strong>：普通流每次 <code>read()</code> 或 <code>write()</code> 操作都会进行 <strong>一次磁盘 IO</strong>，而缓冲流会 <strong>一次性读取&#x2F;写入多个字节或字符</strong>，提高性能。</li>
+<li><strong>提高读写效率</strong>：缓存数据到 <strong>内存缓冲区</strong>，减少对底层物理设备的直接访问，提高程序性能。</li>
+<li><strong>提供更方便的方法</strong>：如 <code>BufferedReader.readLine()</code> 可直接 <strong>读取一整行</strong>，比 <code>FileReader.read()</code> 逐个字符读取更高效。</li>
+</ul>
+<hr>
+<h2 id="✅-2-缓冲流的分类"><a href="#✅-2-缓冲流的分类" class="headerlink" title="✅ 2. 缓冲流的分类"></a>✅ <strong>2. 缓冲流的分类</strong></h2><p>缓冲流分为 <strong>字节缓冲流</strong> 和 <strong>字符缓冲流</strong>：</p>
+<table>
+<thead>
+<tr>
+<th><strong>流类型</strong></th>
+<th><strong>对应的普通流</strong></th>
+<th><strong>缓冲流</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>字节输入流</strong></td>
+<td><code>FileInputStream</code></td>
+<td><code>BufferedInputStream</code></td>
+</tr>
+<tr>
+<td><strong>字节输出流</strong></td>
+<td><code>FileOutputStream</code></td>
+<td><code>BufferedOutputStream</code></td>
+</tr>
+<tr>
+<td><strong>字符输入流</strong></td>
+<td><code>FileReader</code></td>
+<td><code>BufferedReader</code></td>
+</tr>
+<tr>
+<td><strong>字符输出流</strong></td>
+<td><code>FileWriter</code></td>
+<td><code>BufferedWriter</code></td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="✅-3-字节缓冲流（BufferedInputStream-BufferedOutputStream）"><a href="#✅-3-字节缓冲流（BufferedInputStream-BufferedOutputStream）" class="headerlink" title="✅ 3. 字节缓冲流（BufferedInputStream &#x2F; BufferedOutputStream）"></a>✅ <strong>3. 字节缓冲流（BufferedInputStream &#x2F; BufferedOutputStream）</strong></h2><h3 id="📌-3-1-字节缓冲输入流-BufferedInputStream"><a href="#📌-3-1-字节缓冲输入流-BufferedInputStream" class="headerlink" title="📌 3.1 字节缓冲输入流 BufferedInputStream"></a>📌 <strong>3.1 字节缓冲输入流 <code>BufferedInputStream</code></strong></h3><p>用于 <strong>加快字节读取速度</strong>，它会 <strong>一次性读取较大块数据到缓冲区</strong>，然后从缓冲区按需提供数据，而不是每次都直接访问文件。</p>
+<h4 id="示例：使用-BufferedInputStream-读取文件"><a href="#示例：使用-BufferedInputStream-读取文件" class="headerlink" title="示例：使用 BufferedInputStream 读取文件"></a><strong>示例：使用 <code>BufferedInputStream</code> 读取文件</strong></h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.io.*;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">BufferedInputStreamExample</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-keyword">try</span> (<span class="hljs-type">BufferedInputStream</span> <span class="hljs-variable">bis</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BufferedInputStream</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">FileInputStream</span>(<span class="hljs-string">&quot;test.txt&quot;</span>))) &#123;<br>            <span class="hljs-type">int</span> data;<br>            <span class="hljs-keyword">while</span> ((data = bis.read()) != -<span class="hljs-number">1</span>) &#123;<br>                System.out.print((<span class="hljs-type">char</span>) data);  <span class="hljs-comment">// 逐字节读取</span><br>            &#125;<br>        &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;<br>            e.printStackTrace();<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>🔹 <strong>和 <code>FileInputStream</code> 的区别</strong>：</p>
+<ul>
+<li><code>FileInputStream.read()</code> 每次 <strong>读取一个字节</strong>，如果文件很大，会频繁访问磁盘，效率低。</li>
+<li><code>BufferedInputStream</code> <strong>一次性读取多个字节</strong>，减少磁盘访问次数，提高效率。</li>
+</ul>
+<hr>
+<h3 id="📌-3-2-字节缓冲输出流-BufferedOutputStream"><a href="#📌-3-2-字节缓冲输出流-BufferedOutputStream" class="headerlink" title="📌 3.2 字节缓冲输出流 BufferedOutputStream"></a>📌 <strong>3.2 字节缓冲输出流 <code>BufferedOutputStream</code></strong></h3><p>用于 <strong>加快字节写入速度</strong>，它会 <strong>先写入缓冲区</strong>，当缓冲区满了或 <code>flush()</code> 被调用时，才会将数据写入目标文件。</p>
+<h4 id="示例：使用-BufferedOutputStream-写入文件"><a href="#示例：使用-BufferedOutputStream-写入文件" class="headerlink" title="示例：使用 BufferedOutputStream 写入文件"></a><strong>示例：使用 <code>BufferedOutputStream</code> 写入文件</strong></h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.io.*;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">BufferedOutputStreamExample</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-keyword">try</span> (<span class="hljs-type">BufferedOutputStream</span> <span class="hljs-variable">bos</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BufferedOutputStream</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">FileOutputStream</span>(<span class="hljs-string">&quot;output.txt&quot;</span>))) &#123;<br>            <span class="hljs-type">String</span> <span class="hljs-variable">data</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;Hello, Java IO!&quot;</span>;<br>            bos.write(data.getBytes());  <span class="hljs-comment">// 先写入缓冲区</span><br>            bos.flush();  <span class="hljs-comment">// 强制刷新缓冲区，确保数据写入文件</span><br>        &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;<br>            e.printStackTrace();<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>🔹 <strong>重点：</strong></p>
+<ul>
+<li><code>flush()</code> 方法 <strong>强制写出缓冲区数据</strong>，确保数据及时保存到文件。</li>
+<li><strong>若不调用 <code>flush()</code> 或 <code>close()</code>，可能导致部分数据未写入文件</strong>。</li>
+</ul>
+<hr>
+<h2 id="✅-4-字符缓冲流（BufferedReader-BufferedWriter）"><a href="#✅-4-字符缓冲流（BufferedReader-BufferedWriter）" class="headerlink" title="✅ 4. 字符缓冲流（BufferedReader &#x2F; BufferedWriter）"></a>✅ <strong>4. 字符缓冲流（BufferedReader &#x2F; BufferedWriter）</strong></h2><p><strong>字符缓冲流</strong> 用于 <strong>文本文件</strong> 的高效读写，它基于 <code>Reader</code> &#x2F; <code>Writer</code>，支持 <strong>整行读取、写入</strong>。</p>
+<hr>
+<h3 id="📌-4-1-字符缓冲输入流-BufferedReader"><a href="#📌-4-1-字符缓冲输入流-BufferedReader" class="headerlink" title="📌 4.1 字符缓冲输入流 BufferedReader"></a>📌 <strong>4.1 字符缓冲输入流 <code>BufferedReader</code></strong></h3><p>相比 <code>FileReader</code>，<code>BufferedReader</code> 提供了 <strong>按行读取</strong> 的方法，适用于读取 <strong>文本文件</strong>。</p>
+<h4 id="示例：使用-BufferedReader-按行读取文件"><a href="#示例：使用-BufferedReader-按行读取文件" class="headerlink" title="示例：使用 BufferedReader 按行读取文件"></a><strong>示例：使用 <code>BufferedReader</code> 按行读取文件</strong></h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.io.*;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">BufferedReaderExample</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-keyword">try</span> (<span class="hljs-type">BufferedReader</span> <span class="hljs-variable">br</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BufferedReader</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">FileReader</span>(<span class="hljs-string">&quot;test.txt&quot;</span>))) &#123;<br>            String line;<br>            <span class="hljs-keyword">while</span> ((line = br.readLine()) != <span class="hljs-literal">null</span>) &#123;  <span class="hljs-comment">// 按行读取，提高效率</span><br>                System.out.println(line);<br>            &#125;<br>        &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;<br>            e.printStackTrace();<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>🔹 <strong>为什么 <code>BufferedReader</code> 比 <code>FileReader</code> 更高效？</strong></p>
+<ul>
+<li><code>BufferedReader.readLine()</code> <strong>一次性读取一整行</strong>，避免多次调用 <code>read()</code>，减少 IO 操作。</li>
+<li><strong>适用于读取大文本文件</strong>，如日志分析、配置文件解析等。</li>
+</ul>
+<hr>
+<h3 id="📌-4-2-字符缓冲输出流-BufferedWriter"><a href="#📌-4-2-字符缓冲输出流-BufferedWriter" class="headerlink" title="📌 4.2 字符缓冲输出流 BufferedWriter"></a>📌 <strong>4.2 字符缓冲输出流 <code>BufferedWriter</code></strong></h3><p>用于 <strong>高效写入文本文件</strong>，支持 <strong>写入换行</strong>（<code>newLine()</code> 方法）。</p>
+<h4 id="示例：使用-BufferedWriter-写入文本"><a href="#示例：使用-BufferedWriter-写入文本" class="headerlink" title="示例：使用 BufferedWriter 写入文本"></a><strong>示例：使用 <code>BufferedWriter</code> 写入文本</strong></h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.io.*;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">BufferedWriterExample</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-keyword">try</span> (<span class="hljs-type">BufferedWriter</span> <span class="hljs-variable">bw</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BufferedWriter</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">FileWriter</span>(<span class="hljs-string">&quot;output.txt&quot;</span>))) &#123;<br>            bw.write(<span class="hljs-string">&quot;Hello, Java IO!&quot;</span>);<br>            bw.newLine();  <span class="hljs-comment">// 写入换行符</span><br>            bw.write(<span class="hljs-string">&quot;This is a new line.&quot;</span>);<br>            bw.flush();  <span class="hljs-comment">// 刷新缓冲区</span><br>        &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;<br>            e.printStackTrace();<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>🔹 <strong>重点：</strong></p>
+<ul>
+<li><code>newLine()</code> <strong>写入换行符</strong>，兼容不同操作系统（Windows: <code>\r\n</code>，Linux: <code>\n</code>）。</li>
+<li><code>flush()</code> <strong>强制将数据从缓冲区写入文件</strong>，保证数据不会丢失。</li>
+</ul>
+<hr>
+<h2 id="✅-5-缓冲流-vs-普通流-性能对比"><a href="#✅-5-缓冲流-vs-普通流-性能对比" class="headerlink" title="✅ 5. 缓冲流 vs 普通流 性能对比"></a>✅ <strong>5. 缓冲流 vs 普通流 性能对比</strong></h2><h3 id="普通流-vs-缓冲流"><a href="#普通流-vs-缓冲流" class="headerlink" title="普通流 vs 缓冲流"></a><strong>普通流 vs 缓冲流</strong></h3><table>
+<thead>
+<tr>
+<th><strong>操作</strong></th>
+<th><strong>普通流（FileInputStream）</strong></th>
+<th><strong>缓冲流（BufferedInputStream）</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>读取方式</strong></td>
+<td>逐字节读取，每次访问磁盘</td>
+<td>先读入缓冲区，再批量返回</td>
+</tr>
+<tr>
+<td><strong>写入方式</strong></td>
+<td>逐字节写入，每次写入磁盘</td>
+<td>先写入缓冲区，满了再写入磁盘</td>
+</tr>
+<tr>
+<td><strong>适用场景</strong></td>
+<td>小文件、零散数据读写</td>
+<td>大文件、高频读写</td>
+</tr>
+<tr>
+<td><strong>性能</strong></td>
+<td>低效</td>
+<td>高效</td>
+</tr>
+</tbody></table>
+<p>如果 <strong>文件较大</strong> 或 <strong>读写操作频繁</strong>，<strong>建议使用缓冲流</strong> 来提升性能。</p>
+<hr>
+<h2 id="✅-6-总结"><a href="#✅-6-总结" class="headerlink" title="✅ 6. 总结"></a>✅ <strong>6. 总结</strong></h2><table>
+<thead>
+<tr>
+<th><strong>流类型</strong></th>
+<th><strong>用于</strong></th>
+<th><strong>适用场景</strong></th>
+<th><strong>常用方法</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>BufferedInputStream</code></td>
+<td><strong>字节输入</strong>（加快读取）</td>
+<td>读取二进制文件（图片、视频）</td>
+<td><code>read()</code></td>
+</tr>
+<tr>
+<td><code>BufferedOutputStream</code></td>
+<td><strong>字节输出</strong>（加快写入）</td>
+<td>写入二进制文件</td>
+<td><code>write()</code>、<code>flush()</code></td>
+</tr>
+<tr>
+<td><code>BufferedReader</code></td>
+<td><strong>字符输入</strong>（按行读取）</td>
+<td>读取文本文件（日志、CSV）</td>
+<td><code>readLine()</code></td>
+</tr>
+<tr>
+<td><code>BufferedWriter</code></td>
+<td><strong>字符输出</strong>（高效写入）</td>
+<td>写入文本文件</td>
+<td><code>write()</code>、<code>newLine()</code></td>
+</tr>
+</tbody></table>
+<p>💡 <strong>推荐使用缓冲流！</strong> 在 <strong>处理大文件、提高 IO 效率</strong> 方面，缓冲流是 <strong>优先选择</strong>。🚀</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">Selimn</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2025/04/01/4.4.2%20%E7%BC%93%E5%86%B2%E6%B5%81/">http://example.com/2025/04/01/4.4.2%20%E7%BC%93%E5%86%B2%E6%B5%81/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">Firefly</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/File-IO%E6%B5%81/">File-IO流</a></div><div class="post-share"><div class="social-share" data-image="/img/default_cover/paimeng%20(26).jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/04/01/4.4.1%20IO%E6%B5%81/" title="IO流概述"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/default_cover/paimeng%20(2).jpg" onerror="onerror=null;src='/img/default_cover/dai.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">IO流概述</div></div><div class="info-2"><div class="info-item-1">Java IO 流详解IO（Input&#x2F;Output，输入&#x2F;输出）流 是 Java 处理数据读取和写入的基础，广泛用于文件操作、网络通信、数据传输等场景。Java 的 IO 主要分为 字节流 和 字符流，并且提供了 缓冲流、数据流、对象流 等高级流来提高效率和扩展功能。  ✅ 1. Java IO 流的基本分类Java 的 IO 流可以从不同维度进行分类： 按数据类型分类   流类型 作用 常用类    字节流 以 字节（8bit） 方式操作数据，适用于所有类型文件（文本、图片、视频） InputStream &#x2F; OutputStream   字符流 以 字符（16bit） 方式操作数据，适用于文本文件（txt、csv、json） Reader &#x2F; Writer   按数据流向分类   方向 作用 字节流 字符流    输入流 从外部（文件、网络）读数据 InputStream Reader   输出流 向外部（文件、网络）写数据 OutputStream Writer    ✅ 2. 字节流（InputStream &#x2F;...</div></div></div></a><a class="pagination-related" href="/2025/04/01/4.4.3%20%E5%85%B6%E4%BB%96%E6%B5%81/" title="其他流"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/default_cover/paimeng%20(1).jpg" onerror="onerror=null;src='/img/default_cover/dai.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">其他流</div></div><div class="info-2"><div class="info-item-1">Java 其他流（常见特殊流）详解除了 文件流（FileInputStream&#x2F;FileOutputStream、FileReader&#x2F;FileWriter） 和 缓冲流（BufferedInputStream&#x2F;BufferedOutputStream、BufferedReader&#x2F;BufferedWriter），Java 还提供了许多 特殊的流 来满足不同的需求，如 数据流、转换流、对象流、打印流、标准输入输出流等。  ✅ 1. 数据流（DataInputStream &#x2F; DataOutputStream）作用：    让 Java 可以 读写基本数据类型（int、double、boolean等） 和 字符串，而不仅仅是字节或字符。 适用于 存储二进制数据（如数据库文件、序列化数据等）。  📌 1.1 DataOutputStream（数据输出流）用于 写入基本数据类型 到文件，保证数据的格式不会丢失。 示例：使用 DataOutputStream 写入基本数据1234567891011121314import...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2025/04/01/4.2.1%20%E6%96%B9%E6%B3%95%E9%80%92%E5%BD%92/" title="方法递归"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/default_cover/paimeng%20(7).jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-04-01</div><div class="info-item-2">方法递归</div></div><div class="info-2"><div class="info-item-1">方法递归详解递归 是一种在程序设计中非常常见的技术，它通过让一个方法调用自身来解决问题。递归通常用于那些可以分解成相同子问题的任务，如树形结构遍历、阶乘计算、斐波那契数列、深度优先搜索等。 在 Java 中，递归方法是指一个方法直接或间接地调用自己。递归必须具备两个基本要素：  递归条件：停止递归的条件。 递归过程：方法调用自己并逐步解决问题。  递归的基本结构123456789public returnType methodName(parameters) &#123;    // 递归终止条件    if (terminationCondition) &#123;        return result;    &#125;        // 递归调用    return methodName(newParameters);&#125;   ✅ 1. 递归的经典示例1.1 计算阶乘（Factorial）阶乘是指一个正整数及其所有小于它的正整数的积。比如，5! = 5 * 4 * 3 * 2 * 1。 递归实现阶乘12345678910111213141516public...</div></div></div></a><a class="pagination-related" href="/2025/04/01/4.2.2%20%E6%96%B9%E6%B3%95%E9%80%92%E5%BD%92%E6%90%9C%E7%B4%A2%E6%96%87%E4%BB%B6/" title="方法递归搜索文件"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/default_cover/paimeng%20(8).jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-04-01</div><div class="info-item-2">方法递归搜索文件</div></div><div class="info-2"><div class="info-item-1">使用递归方法查找文件在许多应用场景中，我们需要遍历目录及其子目录，查找特定的文件。使用递归方法可以简洁高效地解决此类问题。通过递归，我们能够遍历整个文件系统，逐级深入查找目标文件。 本文将通过一个例子，展示如何使用 Java 递归方法查找文件。  ✅ 递归查找文件的基本思路递归方法的核心思想是让方法不断地调用自己，以解决同类问题。对于文件查找，我们的任务是遍历目录并检查每个文件或子目录：  判断当前路径是否是文件：如果是文件，则检查文件名是否与目标文件名匹配。 判断当前路径是否是目录：如果是目录，则进入该目录继续查找。  这种方法通过递归调用来处理每个子目录，直到找到目标文件或遍历完整个文件树。  ✅ 实现步骤1. 判断当前路径是否是有效的目录或文件首先，检查当前传入的目录是否存在且是一个有效的目录。如果不是，直接返回。 2. 获取当前目录下的所有文件和子目录通过 File 类的 listFiles() 方法获取当前目录下的所有文件和子目录。 3....</div></div></div></a><a class="pagination-related" href="/2025/04/01/4.3%20%E5%AD%97%E7%AC%A6%E9%9B%86/" title="字符集"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/default_cover/paimeng%20(31).jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-04-01</div><div class="info-item-2">字符集</div></div><div class="info-2"><div class="info-item-1">字符集（Character Set）详解字符集是计算机存储、表示和处理文本的重要基础。在 Java 和许多编程语言中，正确理解字符集对于处理国际化、多语言文本至关重要。本文将介绍字符集的基本概念、常见字符集类型，以及 Java 中的字符集处理。  ✅ 1. 什么是字符集？字符集（Character Set，简称 Charset）是一种映射规则，它将 字符（human-readable） 映射到 字节（machine-readable）。常见的字符集包括 ASCII、ISO-8859-1、UTF-8、GBK 等。 在计算机存储和传输文本时，字符必须转换为 字节。字符集定义了 字符与字节之间的映射关系，不同的字符集可能会导致同样的字符对应不同的字节序列。  ✅ 2. 常见的字符集   字符集 字节数 编码特点    ASCII 1 字节 仅支持英文，范围 0-127，最基础的字符集   ISO-8859-1 1 字节 兼容 ASCII，支持西欧语言（拉丁字母）   GB2312 2 字节 早期的简体中文字符集   GBK 2 字节 GB2312...</div></div></div></a><a class="pagination-related" href="/2025/04/01/4.1%20File/" title="File"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/default_cover/paimeng%20(20).jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-04-01</div><div class="info-item-2">File</div></div><div class="info-2"><div class="info-item-1">Java 中的 File 类详解在 Java 中，File 类是用于与文件和目录进行交互的核心类。通过 File 类，你可以进行文件的创建、删除、重命名、路径获取等操作。File 类并不直接用于文件内容的读写，而是用来表示文件和目录的路径，它允许你对文件系统进行操作。 File 类位于 java.io 包下。  ✅ 1. File 类的基本构造函数File 类有多个构造方法，主要有以下几种： 1.1 使用文件路径创建 File 对象1File file = new File(&quot;path/to/file.txt&quot;);  解释：通过指定文件的路径（可以是绝对路径或相对路径）来创建 File 对象。  1.2 使用文件路径和父目录创建 File 对象1File file = new File(&quot;path/to&quot;, &quot;file.txt&quot;);  解释：第一个参数是父目录路径，第二个参数是文件名。  1.3 使用 URI 创建 File 对象1File file = new File(new...</div></div></div></a><a class="pagination-related" href="/2025/04/01/4.4.1%20IO%E6%B5%81/" title="IO流概述"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/default_cover/paimeng%20(2).jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-04-01</div><div class="info-item-2">IO流概述</div></div><div class="info-2"><div class="info-item-1">Java IO 流详解IO（Input&#x2F;Output，输入&#x2F;输出）流 是 Java 处理数据读取和写入的基础，广泛用于文件操作、网络通信、数据传输等场景。Java 的 IO 主要分为 字节流 和 字符流，并且提供了 缓冲流、数据流、对象流 等高级流来提高效率和扩展功能。  ✅ 1. Java IO 流的基本分类Java 的 IO 流可以从不同维度进行分类： 按数据类型分类   流类型 作用 常用类    字节流 以 字节（8bit） 方式操作数据，适用于所有类型文件（文本、图片、视频） InputStream &#x2F; OutputStream   字符流 以 字符（16bit） 方式操作数据，适用于文本文件（txt、csv、json） Reader &#x2F; Writer   按数据流向分类   方向 作用 字节流 字符流    输入流 从外部（文件、网络）读数据 InputStream Reader   输出流 向外部（文件、网络）写数据 OutputStream Writer    ✅ 2. 字节流（InputStream &#x2F;...</div></div></div></a><a class="pagination-related" href="/2025/04/01/4.4.4%20IO%E6%A1%86%E6%9E%B6/" title="Commons-IO框架"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/default_cover/paimeng%20(29).jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-04-01</div><div class="info-item-2">Commons-IO框架</div></div><div class="info-2"><div class="info-item-1">Commons IO 框架详解Commons IO 是 Apache 提供的 Java IO 工具库，它简化了 文件、流 和 路径 的操作，提高开发效率，减少 try-catch-finally 代码。  ✅ 1. 依赖导入📌 1.1 Maven 依赖12345&lt;dependency&gt;    &lt;groupId&gt;commons-io&lt;/groupId&gt;    &lt;artifactId&gt;commons-io&lt;/artifactId&gt;    &lt;version&gt;2.15.0&lt;/version&gt;&lt;/dependency&gt;  📌 1.2 手动下载从 Apache 官网 下载 JAR 包，添加到 lib 目录。  在项目中创建一个文件夹：lib 将commons-io-2.6.jar文件复制到lib文件夹 在jar文件上点右键，选择“Add as library”，点击OK 在类中导包使用   ✅ 2. Commons IO 核心工具类以下是 Commons IO 提供的 核心工具类...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/avatar/Elysia.jpg" onerror="this.onerror=null;this.src='/img/default_cover/dai.jpg'" alt="avatar"/></div><div class="author-info-name">Selimn</div><div class="author-info-description">Where there is a will, there is a way.</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">35</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">7</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">15</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Selimn0802"><i class="fab fa-github"></i><span>🛴前往小家...</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/Selimn0802" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:3036198337@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">博客，启动！</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Java-%E7%BC%93%E5%86%B2%E6%B5%81%EF%BC%88Buffered-Stream%EF%BC%89%E8%AF%A6%E8%A7%A3"><span class="toc-text">Java 缓冲流（Buffered Stream）详解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%9C%85-1-%E7%BC%93%E5%86%B2%E6%B5%81%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-text">✅ 1. 缓冲流的作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%9C%85-2-%E7%BC%93%E5%86%B2%E6%B5%81%E7%9A%84%E5%88%86%E7%B1%BB"><span class="toc-text">✅ 2. 缓冲流的分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%9C%85-3-%E5%AD%97%E8%8A%82%E7%BC%93%E5%86%B2%E6%B5%81%EF%BC%88BufferedInputStream-BufferedOutputStream%EF%BC%89"><span class="toc-text">✅ 3. 字节缓冲流（BufferedInputStream &#x2F; BufferedOutputStream）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%93%8C-3-1-%E5%AD%97%E8%8A%82%E7%BC%93%E5%86%B2%E8%BE%93%E5%85%A5%E6%B5%81-BufferedInputStream"><span class="toc-text">📌 3.1 字节缓冲输入流 BufferedInputStream</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B%EF%BC%9A%E4%BD%BF%E7%94%A8-BufferedInputStream-%E8%AF%BB%E5%8F%96%E6%96%87%E4%BB%B6"><span class="toc-text">示例：使用 BufferedInputStream 读取文件</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%93%8C-3-2-%E5%AD%97%E8%8A%82%E7%BC%93%E5%86%B2%E8%BE%93%E5%87%BA%E6%B5%81-BufferedOutputStream"><span class="toc-text">📌 3.2 字节缓冲输出流 BufferedOutputStream</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B%EF%BC%9A%E4%BD%BF%E7%94%A8-BufferedOutputStream-%E5%86%99%E5%85%A5%E6%96%87%E4%BB%B6"><span class="toc-text">示例：使用 BufferedOutputStream 写入文件</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%9C%85-4-%E5%AD%97%E7%AC%A6%E7%BC%93%E5%86%B2%E6%B5%81%EF%BC%88BufferedReader-BufferedWriter%EF%BC%89"><span class="toc-text">✅ 4. 字符缓冲流（BufferedReader &#x2F; BufferedWriter）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%93%8C-4-1-%E5%AD%97%E7%AC%A6%E7%BC%93%E5%86%B2%E8%BE%93%E5%85%A5%E6%B5%81-BufferedReader"><span class="toc-text">📌 4.1 字符缓冲输入流 BufferedReader</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B%EF%BC%9A%E4%BD%BF%E7%94%A8-BufferedReader-%E6%8C%89%E8%A1%8C%E8%AF%BB%E5%8F%96%E6%96%87%E4%BB%B6"><span class="toc-text">示例：使用 BufferedReader 按行读取文件</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%93%8C-4-2-%E5%AD%97%E7%AC%A6%E7%BC%93%E5%86%B2%E8%BE%93%E5%87%BA%E6%B5%81-BufferedWriter"><span class="toc-text">📌 4.2 字符缓冲输出流 BufferedWriter</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B%EF%BC%9A%E4%BD%BF%E7%94%A8-BufferedWriter-%E5%86%99%E5%85%A5%E6%96%87%E6%9C%AC"><span class="toc-text">示例：使用 BufferedWriter 写入文本</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%9C%85-5-%E7%BC%93%E5%86%B2%E6%B5%81-vs-%E6%99%AE%E9%80%9A%E6%B5%81-%E6%80%A7%E8%83%BD%E5%AF%B9%E6%AF%94"><span class="toc-text">✅ 5. 缓冲流 vs 普通流 性能对比</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%99%AE%E9%80%9A%E6%B5%81-vs-%E7%BC%93%E5%86%B2%E6%B5%81"><span class="toc-text">普通流 vs 缓冲流</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%9C%85-6-%E6%80%BB%E7%BB%93"><span class="toc-text">✅ 6. 总结</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/04/02/5.5%20%E7%BA%BF%E7%A8%8B%E6%B1%A0/" title="线程池"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/default_cover/paimeng%20(15).jpg" onerror="this.onerror=null;this.src='/img/default_cover/dai.jpg'" alt="线程池"/></a><div class="content"><a class="title" href="/2025/04/02/5.5%20%E7%BA%BF%E7%A8%8B%E6%B1%A0/" title="线程池">线程池</a><time datetime="2025-04-02T12:15:00.000Z" title="发表于 2025-04-02 20:15:00">2025-04-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/04/02/5.4%20%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5/" title="线程同步"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/default_cover/paimeng%20(21).jpg" onerror="this.onerror=null;this.src='/img/default_cover/dai.jpg'" alt="线程同步"/></a><div class="content"><a class="title" href="/2025/04/02/5.4%20%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5/" title="线程同步">线程同步</a><time datetime="2025-04-02T12:09:00.000Z" title="发表于 2025-04-02 20:09:00">2025-04-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/04/02/5.3%20thread%E6%8F%90%E4%BE%9B%E7%9A%84%E5%B8%B8%E7%94%A8%E6%9E%84%E9%80%A0%E5%99%A8/" title="thread提供的常用构造器"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/default_cover/paimeng%20(19).jpg" onerror="this.onerror=null;this.src='/img/default_cover/dai.jpg'" alt="thread提供的常用构造器"/></a><div class="content"><a class="title" href="/2025/04/02/5.3%20thread%E6%8F%90%E4%BE%9B%E7%9A%84%E5%B8%B8%E7%94%A8%E6%9E%84%E9%80%A0%E5%99%A8/" title="thread提供的常用构造器">thread提供的常用构造器</a><time datetime="2025-04-02T02:55:00.000Z" title="发表于 2025-04-02 10:55:00">2025-04-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/04/02/5.2%20thread%E6%8F%90%E4%BE%9B%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/" title="thread提供的常用方法"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/default_cover/paimeng%20(25).jpg" onerror="this.onerror=null;this.src='/img/default_cover/dai.jpg'" alt="thread提供的常用方法"/></a><div class="content"><a class="title" href="/2025/04/02/5.2%20thread%E6%8F%90%E4%BE%9B%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/" title="thread提供的常用方法">thread提供的常用方法</a><time datetime="2025-04-02T02:54:00.000Z" title="发表于 2025-04-02 10:54:00">2025-04-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/04/02/5.1%20%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%88%9B%E5%BB%BA%E6%96%B9%E6%B3%95/" title="线程的创建方法"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/default_cover/paimeng%20(28).jpg" onerror="this.onerror=null;this.src='/img/default_cover/dai.jpg'" alt="线程的创建方法"/></a><div class="content"><a class="title" href="/2025/04/02/5.1%20%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%88%9B%E5%BB%BA%E6%96%B9%E6%B3%95/" title="线程的创建方法">线程的创建方法</a><time datetime="2025-04-02T02:00:00.000Z" title="发表于 2025-04-02 10:00:00">2025-04-02</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2025 By Selimn</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.3.5</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"></div><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="30" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"live2d-widget-model-wanko"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body></html>
