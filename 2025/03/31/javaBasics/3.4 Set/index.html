@@ -1,0 +1,317 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Set | Firefly</title><meta name="author" content="Selimn"><meta name="copyright" content="Selimn"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Java Set 集合详解Set 是 Java 集合框架中的一个接口，继承自 Collection，它的特点是不允许存储重复元素，并且可以根据不同实现类选择是否保证元素的顺序。  ✅ 1. Set 的特点 不允许重复元素：如果向 Set 中添加一个已存在的元素，添加操作会被忽略。 无索引：不像 List，Set 不支持索引访问，只能通过迭代器或增强 for 循环遍历。 允许存储 null（但只能有">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Set">
+<meta property="og:url" content="http://example.com/2025/03/31/javaBasics/3.4%20Set/index.html">
+<meta property="og:site_name" content="Firefly">
+<meta property="og:description" content="Java Set 集合详解Set 是 Java 集合框架中的一个接口，继承自 Collection，它的特点是不允许存储重复元素，并且可以根据不同实现类选择是否保证元素的顺序。  ✅ 1. Set 的特点 不允许重复元素：如果向 Set 中添加一个已存在的元素，添加操作会被忽略。 无索引：不像 List，Set 不支持索引访问，只能通过迭代器或增强 for 循环遍历。 允许存储 null（但只能有">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/default_cover/paimeng%20(11).jpg">
+<meta property="article:published_time" content="2025-03-31T04:47:00.000Z">
+<meta property="article:modified_time" content="2025-04-02T12:12:21.877Z">
+<meta property="article:author" content="Selimn">
+<meta property="article:tag" content="集合">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/default_cover/paimeng%20(11).jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Set",
+  "url": "http://example.com/2025/03/31/javaBasics/3.4%20Set/",
+  "image": "http://example.com/img/default_cover/paimeng%20(11).jpg",
+  "datePublished": "2025-03-31T04:47:00.000Z",
+  "dateModified": "2025-04-02T12:12:21.877Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Selimn",
+      "url": "http://example.com/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/"><link rel="canonical" href="http://example.com/2025/03/31/javaBasics/3.4%20Set/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          const hour = new Date().getHours()
+          const isNight = hour <= 6 || hour >= 18
+          if (theme === undefined) isNight ? activateDarkMode() : activateLightMode()
+          else theme === 'light' ? activateLightMode() : activateDarkMode()
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":230,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-right"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Set',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/avatar/Elysia.jpg" onerror="this.onerror=null;this.src='/img/default_cover/dai.jpg'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">46</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">9</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">17</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://github.com/Selimn0802/Selimn0802.github.io/blob/main/img/background/Ayaka_2.jpg?raw=true);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/avatar/Elysia.jpg" alt="Logo"><span class="site-name">Firefly</span></a><a class="nav-page-title" href="/"><span class="site-name">Set</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Set</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-03-31T04:47:00.000Z" title="发表于 2025-03-31 12:47:00">2025-03-31</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-04-02T12:12:21.877Z" title="更新于 2025-04-02 20:12:21">2025-04-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Java/">Java</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Java/%E5%8A%A0%E5%BC%BA/">加强</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Java/%E5%8A%A0%E5%BC%BA/Collection%E4%B8%8EMap/">Collection与Map</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Java/%E5%8A%A0%E5%BC%BA/Collection%E4%B8%8EMap/Collection/">Collection</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>4分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><div id="post-outdate-notice" data="{&quot;limitDay&quot;:365,&quot;messagePrev&quot;:&quot;It has been&quot;,&quot;messageNext&quot;:&quot;days since the last update, the content of the article may be outdated.&quot;,&quot;postUpdate&quot;:&quot;2025-04-02 20:12:21&quot;}" hidden></div><h1 id="Java-Set-集合详解"><a href="#Java-Set-集合详解" class="headerlink" title="Java Set 集合详解"></a><strong>Java Set 集合详解</strong></h1><p><code>Set</code> 是 Java 集合框架中的一个接口，继承自 <code>Collection</code>，它的<strong>特点是不允许存储重复元素</strong>，并且可以<strong>根据不同实现类选择是否保证元素的顺序</strong>。</p>
+<hr>
+<h2 id="✅-1-Set-的特点"><a href="#✅-1-Set-的特点" class="headerlink" title="✅ 1. Set 的特点"></a>✅ <strong>1. Set 的特点</strong></h2><ul>
+<li><strong>不允许重复元素</strong>：如果向 <code>Set</code> 中添加一个已存在的元素，添加操作会被忽略。</li>
+<li><strong>无索引</strong>：不像 <code>List</code>，<code>Set</code> <strong>不支持索引访问</strong>，只能通过迭代器或增强 <code>for</code> 循环遍历。</li>
+<li><strong>允许存储 <code>null</code></strong>（但只能有一个 <code>null</code>）。</li>
+<li><strong>元素顺序不固定</strong>（具体顺序由实现类决定）。</li>
+</ul>
+<hr>
+<h2 id="✅-2-Set-的主要实现类"><a href="#✅-2-Set-的主要实现类" class="headerlink" title="✅ 2. Set 的主要实现类"></a>✅ <strong>2. Set 的主要实现类</strong></h2><table>
+<thead>
+<tr>
+<th><strong>实现类</strong></th>
+<th><strong>底层数据结构</strong></th>
+<th><strong>特点</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>HashSet</code></td>
+<td><strong>哈希表</strong>（<code>HashMap</code>）</td>
+<td><strong>无序</strong>，增删查快（<code>O(1)</code>）</td>
+</tr>
+<tr>
+<td><code>LinkedHashSet</code></td>
+<td><strong>哈希表 + 双向链表</strong></td>
+<td><strong>有序</strong>（按插入顺序）</td>
+</tr>
+<tr>
+<td><code>TreeSet</code></td>
+<td><strong>红黑树（自平衡二叉树）</strong></td>
+<td><strong>有序</strong>（按<strong>自然排序</strong>或<strong>比较器排序</strong>）</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="✅-3-Set-的常用方法"><a href="#✅-3-Set-的常用方法" class="headerlink" title="✅ 3. Set 的常用方法"></a>✅ <strong>3. Set 的常用方法</strong></h2><p><code>Set</code> 继承了 <code>Collection</code> 接口的方法，没有额外的方法，常见操作包括：</p>
+<table>
+<thead>
+<tr>
+<th><strong>方法</strong></th>
+<th><strong>作用</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>add(E e)</code></td>
+<td>添加元素（如果存在则不添加）</td>
+</tr>
+<tr>
+<td><code>remove(Object o)</code></td>
+<td>删除指定元素</td>
+</tr>
+<tr>
+<td><code>contains(Object o)</code></td>
+<td>判断是否包含指定元素</td>
+</tr>
+<tr>
+<td><code>size()</code></td>
+<td>获取集合大小</td>
+</tr>
+<tr>
+<td><code>isEmpty()</code></td>
+<td>判断集合是否为空</td>
+</tr>
+<tr>
+<td><code>clear()</code></td>
+<td>清空集合</td>
+</tr>
+<tr>
+<td><code>iterator()</code></td>
+<td>获取迭代器</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="✅-4-HashSet-用法"><a href="#✅-4-HashSet-用法" class="headerlink" title="✅ 4. HashSet 用法"></a>✅ <strong>4. <code>HashSet</code> 用法</strong></h2><p><code>HashSet</code> 基于 <strong>哈希表</strong> 实现，<strong>不保证元素顺序</strong>，插入、删除、查找的时间复杂度 <strong>O(1)</strong>。</p>
+<h3 id="4-1-HashSet-示例"><a href="#4-1-HashSet-示例" class="headerlink" title="4.1 HashSet 示例"></a><strong>4.1 <code>HashSet</code> 示例</strong></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.util.HashSet;<br><span class="hljs-keyword">import</span> java.util.Set;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">HashSetExample</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        Set&lt;String&gt; set = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashSet</span>&lt;&gt;();<br><br>        set.add(<span class="hljs-string">&quot;Java&quot;</span>);<br>        set.add(<span class="hljs-string">&quot;Python&quot;</span>);<br>        set.add(<span class="hljs-string">&quot;C++&quot;</span>);<br>        set.add(<span class="hljs-string">&quot;Java&quot;</span>); <span class="hljs-comment">// 重复元素不会被添加</span><br><br>        System.out.println(set); <span class="hljs-comment">// [C++, Java, Python]（无序）</span><br>        System.out.println(<span class="hljs-string">&quot;是否包含 Java: &quot;</span> + set.contains(<span class="hljs-string">&quot;Java&quot;</span>)); <span class="hljs-comment">// true</span><br><br>        set.remove(<span class="hljs-string">&quot;Python&quot;</span>);<br>        System.out.println(set); <span class="hljs-comment">// [C++, Java]</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="4-2-遍历-HashSet"><a href="#4-2-遍历-HashSet" class="headerlink" title="4.2 遍历 HashSet"></a><strong>4.2 遍历 <code>HashSet</code></strong></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 方式 1：增强 for 循环</span><br><span class="hljs-keyword">for</span> (String item : set) &#123;<br>    System.out.println(item);<br>&#125;<br><br><span class="hljs-comment">// 方式 2：迭代器遍历</span><br>Iterator&lt;String&gt; iterator = set.iterator();<br><span class="hljs-keyword">while</span> (iterator.hasNext()) &#123;<br>    System.out.println(iterator.next());<br>&#125;<br><br><span class="hljs-comment">// 方式 3：Lambda 表达式</span><br>set.forEach(System.out::println);<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="✅-5-LinkedHashSet-用法"><a href="#✅-5-LinkedHashSet-用法" class="headerlink" title="✅ 5. LinkedHashSet 用法"></a>✅ <strong>5. <code>LinkedHashSet</code> 用法</strong></h2><p><code>LinkedHashSet</code> 继承自 <code>HashSet</code>，<strong>但它保留了元素的插入顺序</strong>。</p>
+<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a><strong>示例</strong></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.util.LinkedHashSet;<br><span class="hljs-keyword">import</span> java.util.Set;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">LinkedHashSetExample</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        Set&lt;String&gt; set = <span class="hljs-keyword">new</span> <span class="hljs-title class_">LinkedHashSet</span>&lt;&gt;();<br><br>        set.add(<span class="hljs-string">&quot;Java&quot;</span>);<br>        set.add(<span class="hljs-string">&quot;Python&quot;</span>);<br>        set.add(<span class="hljs-string">&quot;C++&quot;</span>);<br><br>        System.out.println(set); <span class="hljs-comment">// [Java, Python, C++]（有序）</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="✅-6-TreeSet-用法"><a href="#✅-6-TreeSet-用法" class="headerlink" title="✅ 6. TreeSet 用法"></a>✅ <strong>6. <code>TreeSet</code> 用法</strong></h2><p><code>TreeSet</code> 基于 <strong>红黑树</strong> 实现，<strong>保证元素按照自然顺序（默认升序）排序</strong>，增删查的时间复杂度 <strong>O(log n)</strong>。</p>
+<h3 id="6-1-TreeSet-示例"><a href="#6-1-TreeSet-示例" class="headerlink" title="6.1 TreeSet 示例"></a><strong>6.1 <code>TreeSet</code> 示例</strong></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.util.Set;<br><span class="hljs-keyword">import</span> java.util.TreeSet;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">TreeSetExample</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        Set&lt;Integer&gt; set = <span class="hljs-keyword">new</span> <span class="hljs-title class_">TreeSet</span>&lt;&gt;();<br><br>        set.add(<span class="hljs-number">10</span>);<br>        set.add(<span class="hljs-number">5</span>);<br>        set.add(<span class="hljs-number">20</span>);<br>        set.add(<span class="hljs-number">15</span>);<br><br>        System.out.println(set); <span class="hljs-comment">// [5, 10, 15, 20]（自动排序）</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="6-2-自定义排序"><a href="#6-2-自定义排序" class="headerlink" title="6.2 自定义排序"></a><strong>6.2 自定义排序</strong></h3><p>可以使用 <code>Comparator</code> 来指定排序规则：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.util.Comparator;<br><span class="hljs-keyword">import</span> java.util.Set;<br><span class="hljs-keyword">import</span> java.util.TreeSet;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">CustomTreeSet</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-comment">// 按降序排序</span><br>        Set&lt;Integer&gt; set = <span class="hljs-keyword">new</span> <span class="hljs-title class_">TreeSet</span>&lt;&gt;(Comparator.reverseOrder());<br><br>        set.add(<span class="hljs-number">10</span>);<br>        set.add(<span class="hljs-number">5</span>);<br>        set.add(<span class="hljs-number">20</span>);<br>        set.add(<span class="hljs-number">15</span>);<br><br>        System.out.println(set); <span class="hljs-comment">// [20, 15, 10, 5]</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="✅-7-Set-常见问题"><a href="#✅-7-Set-常见问题" class="headerlink" title="✅ 7. Set 常见问题"></a>✅ <strong>7. <code>Set</code> 常见问题</strong></h2><h3 id="7-1-HashSet-为什么无序？"><a href="#7-1-HashSet-为什么无序？" class="headerlink" title="7.1 HashSet 为什么无序？"></a><strong>7.1 <code>HashSet</code> 为什么无序？</strong></h3><p><code>HashSet</code> 基于 <code>HashMap</code>，元素存储在 <strong>哈希桶（Hash Bucket）</strong> 里，顺序依赖于哈希值，<strong>不会按插入顺序排列</strong>。</p>
+<h3 id="7-2-如何让-Set-保持顺序？"><a href="#7-2-如何让-Set-保持顺序？" class="headerlink" title="7.2 如何让 Set 保持顺序？"></a><strong>7.2 如何让 <code>Set</code> 保持顺序？</strong></h3><ul>
+<li><strong>按插入顺序</strong>：使用 <code>LinkedHashSet</code></li>
+<li><strong>按大小排序</strong>：使用 <code>TreeSet</code></li>
+</ul>
+<h3 id="7-3-TreeSet-为什么不能存-null？"><a href="#7-3-TreeSet-为什么不能存-null？" class="headerlink" title="7.3 TreeSet 为什么不能存 null？"></a><strong>7.3 <code>TreeSet</code> 为什么不能存 <code>null</code>？</strong></h3><p><code>TreeSet</code> 依赖 <code>compareTo()</code> 进行排序，而 <code>null</code> 不能参与比较，因此 <code>TreeSet</code> <strong>不允许 <code>null</code> 元素</strong>。</p>
+<hr>
+<h2 id="✅-8-Set-vs-List-对比"><a href="#✅-8-Set-vs-List-对比" class="headerlink" title="✅ 8. Set vs List 对比"></a>✅ <strong>8. Set vs List 对比</strong></h2><table>
+<thead>
+<tr>
+<th><strong>特性</strong></th>
+<th><strong>Set</strong></th>
+<th><strong>List</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>是否允许重复</strong></td>
+<td>❌ 不允许</td>
+<td>✅ 允许</td>
+</tr>
+<tr>
+<td><strong>是否有序</strong></td>
+<td>❌（<code>HashSet</code>）✅（<code>LinkedHashSet</code>、<code>TreeSet</code>）</td>
+<td>✅ 保持插入顺序</td>
+</tr>
+<tr>
+<td><strong>是否支持索引访问</strong></td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><strong>查询效率</strong></td>
+<td>✅ <code>HashSet</code> O(1)</td>
+<td>❌ O(n)</td>
+</tr>
+<tr>
+<td><strong>插入&#x2F;删除效率</strong></td>
+<td>✅ <code>HashSet</code> O(1)</td>
+<td>❌ O(n)</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="✅-9-总结"><a href="#✅-9-总结" class="headerlink" title="✅ 9. 总结"></a>✅ <strong>9. 总结</strong></h2><table>
+<thead>
+<tr>
+<th><strong>实现类</strong></th>
+<th><strong>特点</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>HashSet</code></td>
+<td>无序，查询快，适用于去重</td>
+</tr>
+<tr>
+<td><code>LinkedHashSet</code></td>
+<td>保持插入顺序</td>
+</tr>
+<tr>
+<td><code>TreeSet</code></td>
+<td>按自然顺序或自定义排序</td>
+</tr>
+</tbody></table>
+<p>如果需要<strong>唯一性 + 高效查询</strong>，使用 <code>HashSet</code>。<br>如果需要<strong>唯一性 + 顺序</strong>，使用 <code>LinkedHashSet</code>。<br>如果需要<strong>唯一性 + 排序</strong>，使用 <code>TreeSet</code>。  </p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">Selimn</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2025/03/31/javaBasics/3.4%20Set/">http://example.com/2025/03/31/javaBasics/3.4%20Set/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">Firefly</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E9%9B%86%E5%90%88/">集合</a></div><div class="post-share"><div class="social-share" data-image="/img/default_cover/paimeng%20(11).jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/03/31/javaBasics/3.3%20List/" title="List"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/default_cover/paimeng%20(28).jpg" onerror="onerror=null;src='/img/default_cover/dai.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">List</div></div><div class="info-2"><div class="info-item-1">Java List 集合详解List 是 Java 集合框架中的一个接口，继承自 Collection，允许存储重复元素，并且保持元素的插入顺序。它是有序的，并提供了基于索引的操作，可以随时访问、插入或删除元素。  ✅ 1. List 的特点 有序性：List 保证元素的存储顺序与插入顺序相同。 允许重复元素：List 允许多个元素具有相同的值。 索引访问：可以使用 get(int index) 通过索引访问元素。 支持 null 值：可以存储 null。   ✅ 2. List 的主要实现类   实现类 底层数据结构 特点    ArrayList 动态数组 读取快，增删慢（基于数组）   LinkedList 双向链表 增删快，读取慢（基于链表）   Vector 动态数组（线程安全） 线程安全，但性能较低   Stack 栈（继承 Vector） 先进后出（LIFO）    ✅ 3. List 的常用方法List 继承了 Collection 的方法，并额外提供了一些基于索引的操作方法：    方法 作用    add(E e) 添加元素   add(int index,...</div></div></div></a><a class="pagination-related" href="/2025/03/31/javaBasics/3.6%20Stream%E6%B5%81/" title="Stream"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/default_cover/paimeng%20(2).jpg" onerror="onerror=null;src='/img/default_cover/dai.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">Stream</div></div><div class="info-2"><div class="info-item-1">Java Stream 流详解Java 8 引入了 Stream API，它是一种 声明式 处理数据的方式，旨在简化集合类的操作。Stream 允许你以声明性方式处理集合、数组、I&#x2F;O 通道等的数据流，支持并行处理，并能简洁地执行过滤、映射、排序等操作。  ✅ 1. 什么是 StreamStream 是一种 数据流，不是数据存储结构。它允许你以一种 函数式 的方式处理集合中的数据，通过流水线方式进行操作，支持 惰性计算（即只有在最终操作时才会执行）。Stream 操作通常分为两大类：  中间操作（Intermediate Operations）：返回一个新的流，支持链式调用，操作是惰性求值的。 终止操作（Terminal Operations）：触发流的计算，并产生一个结果（如聚合、输出等），一旦执行终止操作，流就不可再被使用。   ✅ 2. Stream 的常见创建方式Stream 可以通过以下几种方式创建： 2.1 从集合中创建 Stream12345678910111213import java.util.Arrays;import...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2025/03/31/javaBasics/3.2%20%E5%B9%B6%E5%8F%91%E4%BF%AE%E6%94%B9%E5%BC%82%E5%B8%B8%E9%97%AE%E9%A2%98/" title="并发修改异常问题——三种遍历方式的区别"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/default_cover/paimeng%20(25).jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-03-31</div><div class="info-item-2">并发修改异常问题——三种遍历方式的区别</div></div><div class="info-2"><div class="info-item-1">Java 并发修改异常（ConcurrentModificationException）问题详解在多线程环境中，并发修改异常（ConcurrentModificationException） 是一种常见的运行时异常，通常发生在我们在遍历集合时，集合的结构被同时修改。这个问题通常出现在使用 Iterator 或增强型 for 循环（foreach）时，集合在遍历的过程中被结构性修改（如添加、删除元素）。  ✅ 1. 什么是并发修改异常ConcurrentModificationException 是 Java 集合类中的一个异常，它表示在 遍历集合的同时修改 集合结构（例如添加、删除元素），而这种修改操作与遍历操作之间没有同步机制时，抛出的异常。 典型场景： 使用 Iterator 或增强型 for 循环遍历集合时，修改集合（例如 remove() 或 add()）会导致并发修改异常。   ✅ 2. 引发 ConcurrentModificationException 的场景2.1 使用增强型 for...</div></div></div></a><a class="pagination-related" href="/2025/03/31/javaBasics/3.3%20List/" title="List"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/default_cover/paimeng%20(28).jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-03-31</div><div class="info-item-2">List</div></div><div class="info-2"><div class="info-item-1">Java List 集合详解List 是 Java 集合框架中的一个接口，继承自 Collection，允许存储重复元素，并且保持元素的插入顺序。它是有序的，并提供了基于索引的操作，可以随时访问、插入或删除元素。  ✅ 1. List 的特点 有序性：List 保证元素的存储顺序与插入顺序相同。 允许重复元素：List 允许多个元素具有相同的值。 索引访问：可以使用 get(int index) 通过索引访问元素。 支持 null 值：可以存储 null。   ✅ 2. List 的主要实现类   实现类 底层数据结构 特点    ArrayList 动态数组 读取快，增删慢（基于数组）   LinkedList 双向链表 增删快，读取慢（基于链表）   Vector 动态数组（线程安全） 线程安全，但性能较低   Stack 栈（继承 Vector） 先进后出（LIFO）    ✅ 3. List 的常用方法List 继承了 Collection 的方法，并额外提供了一些基于索引的操作方法：    方法 作用    add(E e) 添加元素   add(int index,...</div></div></div></a><a class="pagination-related" href="/2025/03/31/javaBasics/3.1%20Collection/" title="Collection"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/default_cover/paimeng%20(15).jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-03-31</div><div class="info-item-2">Collection</div></div><div class="info-2"><div class="info-item-1">Java Collection 常用功能详解在 Java 中，Collection 接口是所有集合类的根接口，主要用于存储和操作一组对象。它的常用功能包括添加、删除、遍历、排序、筛选等操作。   ✅ 1. Collection 的核心方法Collection 接口定义了一些通用方法，这些方法被 List、Set 等子接口继承。    方法 作用    add(E e) 添加元素   addAll(Collection&lt;? extends E&gt; c) 添加另一个集合的所有元素   remove(Object o) 删除指定元素   removeAll(Collection&lt;?&gt; c) 删除另一个集合中的所有元素   clear() 清空集合   contains(Object o) 检查集合是否包含某个元素   containsAll(Collection&lt;?&gt;...</div></div></div></a><a class="pagination-related" href="/2025/03/31/javaBasics/3.6%20Stream%E6%B5%81/" title="Stream"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/default_cover/paimeng%20(2).jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-03-31</div><div class="info-item-2">Stream</div></div><div class="info-2"><div class="info-item-1">Java Stream 流详解Java 8 引入了 Stream API，它是一种 声明式 处理数据的方式，旨在简化集合类的操作。Stream 允许你以声明性方式处理集合、数组、I&#x2F;O 通道等的数据流，支持并行处理，并能简洁地执行过滤、映射、排序等操作。  ✅ 1. 什么是 StreamStream 是一种 数据流，不是数据存储结构。它允许你以一种 函数式 的方式处理集合中的数据，通过流水线方式进行操作，支持 惰性计算（即只有在最终操作时才会执行）。Stream 操作通常分为两大类：  中间操作（Intermediate Operations）：返回一个新的流，支持链式调用，操作是惰性求值的。 终止操作（Terminal Operations）：触发流的计算，并产生一个结果（如聚合、输出等），一旦执行终止操作，流就不可再被使用。   ✅ 2. Stream 的常见创建方式Stream 可以通过以下几种方式创建： 2.1 从集合中创建 Stream12345678910111213import java.util.Arrays;import...</div></div></div></a><a class="pagination-related" href="/2025/03/31/javaBasics/3.5%20Map/" title="Map"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/default_cover/paimeng%20(27).jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-03-31</div><div class="info-item-2">Map</div></div><div class="info-2"><div class="info-item-1">Java Map 集合详解Map 是 Java 集合框架中的一个接口，它并不继承自 Collection，而是用于存储 键值对（Key-Value），其中每个键（Key）对应一个值（Value）。Map 是一个 无序 集合，不允许键重复，但值（Value）可以重复。  ✅ 1. Map 的特点 无序性：Map 的键值对没有固定的顺序，具体顺序由实现类决定。 键唯一性：Map 中的每个键都是唯一的。如果插入具有相同键的条目，后插入的值会替代之前的值。 值可重复：Map 中的值（Value）可以重复，但键（Key）不可重复。   ✅ 2. Map 的主要实现类   实现类 底层数据结构 特点    HashMap 哈希表（HashMap） 无序，查询、插入、删除时间复杂度 O(1)   LinkedHashMap 哈希表 + 双向链表 有序（按插入顺序）   TreeMap 红黑树（自平衡二叉树） 有序（按自然排序或比较器排序）   Hashtable 哈希表 线程安全，性能较低（已废弃）   ConcurrentHashMap 哈希表（线程安全） 线程安全，高性能    ✅ 3....</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/avatar/Elysia.jpg" onerror="this.onerror=null;this.src='/img/default_cover/dai.jpg'" alt="avatar"/></div><div class="author-info-name">Selimn</div><div class="author-info-description">Where there is a will, there is a way.</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">46</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">9</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">17</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Selimn0802"><i class="fab fa-github"></i><span>🛴前往小家...</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/Selimn0802" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:3036198337@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">博客，启动！</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Java-Set-%E9%9B%86%E5%90%88%E8%AF%A6%E8%A7%A3"><span class="toc-text">Java Set 集合详解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%9C%85-1-Set-%E7%9A%84%E7%89%B9%E7%82%B9"><span class="toc-text">✅ 1. Set 的特点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%9C%85-2-Set-%E7%9A%84%E4%B8%BB%E8%A6%81%E5%AE%9E%E7%8E%B0%E7%B1%BB"><span class="toc-text">✅ 2. Set 的主要实现类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%9C%85-3-Set-%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-text">✅ 3. Set 的常用方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%9C%85-4-HashSet-%E7%94%A8%E6%B3%95"><span class="toc-text">✅ 4. HashSet 用法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-HashSet-%E7%A4%BA%E4%BE%8B"><span class="toc-text">4.1 HashSet 示例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E9%81%8D%E5%8E%86-HashSet"><span class="toc-text">4.2 遍历 HashSet</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%9C%85-5-LinkedHashSet-%E7%94%A8%E6%B3%95"><span class="toc-text">✅ 5. LinkedHashSet 用法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B"><span class="toc-text">示例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%9C%85-6-TreeSet-%E7%94%A8%E6%B3%95"><span class="toc-text">✅ 6. TreeSet 用法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-TreeSet-%E7%A4%BA%E4%BE%8B"><span class="toc-text">6.1 TreeSet 示例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%92%E5%BA%8F"><span class="toc-text">6.2 自定义排序</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%9C%85-7-Set-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98"><span class="toc-text">✅ 7. Set 常见问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#7-1-HashSet-%E4%B8%BA%E4%BB%80%E4%B9%88%E6%97%A0%E5%BA%8F%EF%BC%9F"><span class="toc-text">7.1 HashSet 为什么无序？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-2-%E5%A6%82%E4%BD%95%E8%AE%A9-Set-%E4%BF%9D%E6%8C%81%E9%A1%BA%E5%BA%8F%EF%BC%9F"><span class="toc-text">7.2 如何让 Set 保持顺序？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-3-TreeSet-%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E8%83%BD%E5%AD%98-null%EF%BC%9F"><span class="toc-text">7.3 TreeSet 为什么不能存 null？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%9C%85-8-Set-vs-List-%E5%AF%B9%E6%AF%94"><span class="toc-text">✅ 8. Set vs List 对比</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%9C%85-9-%E6%80%BB%E7%BB%93"><span class="toc-text">✅ 9. 总结</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/04/05/javaBasics/7.4%20%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/" title="动态代理"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/default_cover/paimeng%20(26).jpg" onerror="this.onerror=null;this.src='/img/default_cover/dai.jpg'" alt="动态代理"/></a><div class="content"><a class="title" href="/2025/04/05/javaBasics/7.4%20%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/" title="动态代理">动态代理</a><time datetime="2025-04-05T07:30:00.000Z" title="发表于 2025-04-05 15:30:00">2025-04-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/04/05/javaBasics/7.3%20%E6%B3%A8%E8%A7%A3/" title="注解"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/default_cover/paimeng%20(8).jpg" onerror="this.onerror=null;this.src='/img/default_cover/dai.jpg'" alt="注解"/></a><div class="content"><a class="title" href="/2025/04/05/javaBasics/7.3%20%E6%B3%A8%E8%A7%A3/" title="注解">注解</a><time datetime="2025-04-05T06:30:00.000Z" title="发表于 2025-04-05 14:30:00">2025-04-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/04/05/javaBasics/7.2%20%E5%8F%8D%E5%B0%84/" title="反射"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/default_cover/paimeng%20(28).jpg" onerror="this.onerror=null;this.src='/img/default_cover/dai.jpg'" alt="反射"/></a><div class="content"><a class="title" href="/2025/04/05/javaBasics/7.2%20%E5%8F%8D%E5%B0%84/" title="反射">反射</a><time datetime="2025-04-05T05:30:00.000Z" title="发表于 2025-04-05 13:30:00">2025-04-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/04/05/javaBasics/7.1%20Junit%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/" title="Junit单元测试"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/default_cover/paimeng%20(30).jpg" onerror="this.onerror=null;this.src='/img/default_cover/dai.jpg'" alt="Junit单元测试"/></a><div class="content"><a class="title" href="/2025/04/05/javaBasics/7.1%20Junit%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/" title="Junit单元测试">Junit单元测试</a><time datetime="2025-04-05T04:30:00.000Z" title="发表于 2025-04-05 12:30:00">2025-04-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/04/04/javaBasics/6.2.3%20TCP%E8%AF%A6%E8%A7%A3/" title="TCP详解"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/default_cover/paimeng%20(6).jpg" onerror="this.onerror=null;this.src='/img/default_cover/dai.jpg'" alt="TCP详解"/></a><div class="content"><a class="title" href="/2025/04/04/javaBasics/6.2.3%20TCP%E8%AF%A6%E8%A7%A3/" title="TCP详解">TCP详解</a><time datetime="2025-04-04T04:30:00.000Z" title="发表于 2025-04-04 12:30:00">2025-04-04</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2025 By Selimn</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.3.5</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"></div><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="30" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"live2d-widget-model-wanko"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body></html>
