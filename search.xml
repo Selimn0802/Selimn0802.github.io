@@ -4,11 +4,36 @@
   
     
     <entry>
+      <title>HTML-CSS</title>
+      <link href="/2025/04/08/javaWeb/1.0%20HTML-CSS/"/>
+      <url>/2025/04/08/javaWeb/1.0%20HTML-CSS/</url>
+      
+        <content type="html"><![CDATA[<h2 id="一、HTML-基础详解"><a href="#一、HTML-基础详解" class="headerlink" title="一、HTML 基础详解"></a>一、HTML 基础详解</h2><h3 id="1-1-HTML-是什么？"><a href="#1-1-HTML-是什么？" class="headerlink" title="1.1 HTML 是什么？"></a>1.1 HTML 是什么？</h3><p>HTML（HyperText Markup Language，超文本标记语言）是网页的结构语言，用来描述网页的内容，如文本、图片、视频、链接等。</p><h3 id="1-2-HTML-文档结构"><a href="#1-2-HTML-文档结构" class="headerlink" title="1.2 HTML 文档结构"></a>1.2 HTML 文档结构</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;UTF-8&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>网页标题<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>主标题<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>段落内容<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span><br></code></pre></td></tr></table></figure><h3 id="1-3-常用标签分类"><a href="#1-3-常用标签分类" class="headerlink" title="1.3 常用标签分类"></a>1.3 常用标签分类</h3><h4 id="（1）标题与段落"><a href="#（1）标题与段落" class="headerlink" title="（1）标题与段落"></a>（1）标题与段落</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>标题1<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>标题2<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>这是一个段落。<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br></code></pre></td></tr></table></figure><h4 id="（2）链接与图片"><a href="#（2）链接与图片" class="headerlink" title="（2）链接与图片"></a>（2）链接与图片</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;https://example.com&quot;</span> <span class="hljs-attr">target</span>=<span class="hljs-string">&quot;_blank&quot;</span>&gt;</span>访问链接<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;image.jpg&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;描述文字&quot;</span> <span class="hljs-attr">width</span>=<span class="hljs-string">&quot;300&quot;</span>&gt;</span><br></code></pre></td></tr></table></figure><h4 id="（3）音频与视频"><a href="#（3）音频与视频" class="headerlink" title="（3）音频与视频"></a>（3）音频与视频</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">audio</span> <span class="hljs-attr">controls</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">source</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;music.mp3&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;audio/mpeg&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">audio</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">video</span> <span class="hljs-attr">controls</span> <span class="hljs-attr">width</span>=<span class="hljs-string">&quot;400&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">source</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;video.mp4&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;video/mp4&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">video</span>&gt;</span><br></code></pre></td></tr></table></figure><h4 id="（4）列表"><a href="#（4）列表" class="headerlink" title="（4）列表"></a>（4）列表</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>无序列表项<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">ol</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>有序列表项<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">ol</span>&gt;</span><br></code></pre></td></tr></table></figure><h4 id="（5）表格"><a href="#（5）表格" class="headerlink" title="（5）表格"></a>（5）表格</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">table</span> <span class="hljs-attr">border</span>=<span class="hljs-string">&quot;1&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">th</span>&gt;</span>姓名<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">th</span>&gt;</span>年龄<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>张三<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>18<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span><br></code></pre></td></tr></table></figure><h4 id="（6）表单"><a href="#（6）表单" class="headerlink" title="（6）表单"></a>（6）表单</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">action</span>=<span class="hljs-string">&quot;/submit&quot;</span> <span class="hljs-attr">method</span>=<span class="hljs-string">&quot;post&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">&quot;name&quot;</span>&gt;</span>姓名：<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;name&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;name&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>性别：<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;radio&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;gender&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;male&quot;</span>&gt;</span> 男<br>  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;radio&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;gender&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;female&quot;</span>&gt;</span> 女<br>  <span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;submit&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;提交&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span><br></code></pre></td></tr></table></figure><hr><h2 id="二、CSS-基础与常用样式"><a href="#二、CSS-基础与常用样式" class="headerlink" title="二、CSS 基础与常用样式"></a>二、CSS 基础与常用样式</h2><h3 id="2-1-CSS-是什么？"><a href="#2-1-CSS-是什么？" class="headerlink" title="2.1 CSS 是什么？"></a>2.1 CSS 是什么？</h3><p>CSS（Cascading Style Sheets）用于设置网页样式（字体、颜色、布局、动画等），让页面更美观。</p><h3 id="2-2-CSS-三种写法"><a href="#2-2-CSS-三种写法" class="headerlink" title="2.2 CSS 三种写法"></a>2.2 CSS 三种写法</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-comment">&lt;!-- 内联样式 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;color: red;&quot;</span>&gt;</span>红色文字<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br><br><span class="hljs-comment">&lt;!-- 内部样式 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="language-css"></span><br><span class="language-css">  <span class="hljs-selector-tag">h1</span> &#123; <span class="hljs-attribute">color</span>: blue; &#125;</span><br><span class="language-css"></span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br><br><span class="hljs-comment">&lt;!-- 外部样式 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">&quot;stylesheet&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;style.css&quot;</span>&gt;</span><br></code></pre></td></tr></table></figure><h3 id="2-3-常见属性分类"><a href="#2-3-常见属性分类" class="headerlink" title="2.3 常见属性分类"></a>2.3 常见属性分类</h3><h4 id="字体与文字"><a href="#字体与文字" class="headerlink" title="字体与文字"></a>字体与文字</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-attribute">font-size</span>: <span class="hljs-number">16px</span>;<br><span class="hljs-attribute">color</span>: <span class="hljs-number">#333</span>;<br><span class="hljs-attribute">text-align</span>: center;<br><span class="hljs-attribute">font-weight</span>: bold;<br><span class="hljs-attribute">line-height</span>: <span class="hljs-number">1.5</span>;<br></code></pre></td></tr></table></figure><h4 id="盒子模型"><a href="#盒子模型" class="headerlink" title="盒子模型"></a>盒子模型</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-attribute">width</span>: <span class="hljs-number">300px</span>;<br><span class="hljs-attribute">height</span>: <span class="hljs-number">200px</span>;<br><span class="hljs-attribute">margin</span>: <span class="hljs-number">10px</span>;<br><span class="hljs-attribute">padding</span>: <span class="hljs-number">20px</span>;<br><span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid <span class="hljs-number">#000</span>;<br><span class="hljs-attribute">box-sizing</span>: border-box;<br></code></pre></td></tr></table></figure><h4 id="背景与边框"><a href="#背景与边框" class="headerlink" title="背景与边框"></a>背景与边框</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-attribute">background-color</span>: <span class="hljs-number">#f0f0f0</span>;<br><span class="hljs-attribute">border-radius</span>: <span class="hljs-number">10px</span>;<br><span class="hljs-attribute">box-shadow</span>: <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">10px</span> <span class="hljs-built_in">rgba</span>(<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0.1</span>);<br></code></pre></td></tr></table></figure><h4 id="鼠标与动画"><a href="#鼠标与动画" class="headerlink" title="鼠标与动画"></a>鼠标与动画</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-attribute">cursor</span>: pointer;<br><span class="hljs-attribute">transition</span>: all <span class="hljs-number">0.3s</span> ease;<br></code></pre></td></tr></table></figure><hr><h2 id="三、CSS-布局体系"><a href="#三、CSS-布局体系" class="headerlink" title="三、CSS 布局体系"></a>三、CSS 布局体系</h2><h3 id="3-1-传统布局方式：float-和-position"><a href="#3-1-传统布局方式：float-和-position" class="headerlink" title="3.1 传统布局方式：float 和 position"></a>3.1 传统布局方式：<code>float</code> 和 <code>position</code></h3><ul><li><code>float</code>: 浮动布局（现在多用于兼容旧浏览器）</li><li><code>position</code>: 绝对定位与相对定位</li></ul><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-attribute">position</span>: relative; <span class="hljs-comment">/* 相对当前位置 */</span><br><span class="hljs-attribute">position</span>: absolute; <span class="hljs-comment">/* 相对最近的定位祖先 */</span><br></code></pre></td></tr></table></figure><h3 id="3-2-弹性布局（Flexbox）"><a href="#3-2-弹性布局（Flexbox）" class="headerlink" title="3.2 弹性布局（Flexbox）"></a>3.2 弹性布局（Flexbox）</h3><p><strong>Flexbox</strong> 是现代主流的布局方式，用于水平&#x2F;垂直排列、自动间距、对齐等。</p><h4 id="父容器属性"><a href="#父容器属性" class="headerlink" title="父容器属性"></a>父容器属性</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-attribute">display</span>: flex;<br><span class="hljs-attribute">flex-direction</span>: row;     <span class="hljs-comment">/* 水平排列 */</span><br><span class="hljs-attribute">justify-content</span>: space-between; <span class="hljs-comment">/* 水平对齐 */</span><br><span class="hljs-attribute">align-items</span>: center;     <span class="hljs-comment">/* 垂直对齐 */</span><br></code></pre></td></tr></table></figure><h4 id="子项属性"><a href="#子项属性" class="headerlink" title="子项属性"></a>子项属性</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-attribute">flex</span>: <span class="hljs-number">1</span>;             <span class="hljs-comment">/* 自动占据剩余空间 */</span><br><span class="hljs-attribute">order</span>: <span class="hljs-number">2</span>;            <span class="hljs-comment">/* 排序 */</span><br><span class="hljs-attribute">align-self</span>: flex-end; <span class="hljs-comment">/* 单独对齐 */</span><br></code></pre></td></tr></table></figure><h4 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;display: flex;&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;flex: 1; background: red;&quot;</span>&gt;</span>左边<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;flex: 2; background: blue;&quot;</span>&gt;</span>右边<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure><hr><h2 id="四、补充内容（推荐了解）"><a href="#四、补充内容（推荐了解）" class="headerlink" title="四、补充内容（推荐了解）"></a>四、补充内容（推荐了解）</h2><h3 id="4-1-常用-HTML5-新标签"><a href="#4-1-常用-HTML5-新标签" class="headerlink" title="4.1 常用 HTML5 新标签"></a>4.1 常用 HTML5 新标签</h3><table><thead><tr><th>标签</th><th>作用</th></tr></thead><tbody><tr><td><code>&lt;header&gt;</code></td><td>页眉</td></tr><tr><td><code>&lt;nav&gt;</code></td><td>导航</td></tr><tr><td><code>&lt;section&gt;</code></td><td>区块</td></tr><tr><td><code>&lt;article&gt;</code></td><td>文章内容</td></tr><tr><td><code>&lt;footer&gt;</code></td><td>页脚</td></tr></tbody></table><h3 id="4-2-响应式设计基础"><a href="#4-2-响应式设计基础" class="headerlink" title="4.2 响应式设计基础"></a>4.2 响应式设计基础</h3><p>使用媒体查询：</p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-keyword">@media</span> (<span class="hljs-attribute">max-width</span>: <span class="hljs-number">600px</span>) &#123;<br>  <span class="hljs-selector-tag">body</span> &#123;<br>    <span class="hljs-attribute">background-color</span>: lightgray;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure><h3 id="4-3-常见选择器总结"><a href="#4-3-常见选择器总结" class="headerlink" title="4.3 常见选择器总结"></a>4.3 常见选择器总结</h3><table><thead><tr><th>选择器</th><th>作用</th></tr></thead><tbody><tr><td><code>*</code></td><td>选择所有元素</td></tr><tr><td><code>.class</code></td><td>选择类名</td></tr><tr><td><code>#id</code></td><td>选择 ID</td></tr><tr><td><code>div p</code></td><td>后代选择器</td></tr><tr><td><code>div &gt; p</code></td><td>子选择器</td></tr><tr><td><code>a:hover</code></td><td>伪类选择器</td></tr></tbody></table><hr><h2 id="五、综合实例"><a href="#五、综合实例" class="headerlink" title="五、综合实例"></a>五、综合实例</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;UTF-8&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>个人信息页<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="language-css"></span><br><span class="language-css">    <span class="hljs-selector-tag">body</span> &#123;</span><br><span class="language-css">      <span class="hljs-attribute">font-family</span>: sans-serif;</span><br><span class="language-css">      <span class="hljs-attribute">background</span>: <span class="hljs-number">#f0f2f5</span>;</span><br><span class="language-css">      <span class="hljs-attribute">padding</span>: <span class="hljs-number">20px</span>;</span><br><span class="language-css">    &#125;</span><br><span class="language-css">    <span class="hljs-selector-class">.card</span> &#123;</span><br><span class="language-css">      <span class="hljs-attribute">max-width</span>: <span class="hljs-number">600px</span>;</span><br><span class="language-css">      <span class="hljs-attribute">margin</span>: auto;</span><br><span class="language-css">      <span class="hljs-attribute">background</span>: white;</span><br><span class="language-css">      <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">10px</span>;</span><br><span class="language-css">      <span class="hljs-attribute">padding</span>: <span class="hljs-number">20px</span>;</span><br><span class="language-css">      <span class="hljs-attribute">box-shadow</span>: <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">10px</span> <span class="hljs-number">#ccc</span>;</span><br><span class="language-css">    &#125;</span><br><span class="language-css">    <span class="hljs-selector-class">.card</span> <span class="hljs-selector-tag">img</span> &#123;</span><br><span class="language-css">      <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;</span><br><span class="language-css">      <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">10px</span>;</span><br><span class="language-css">    &#125;</span><br><span class="language-css">    <span class="hljs-selector-class">.card</span> <span class="hljs-selector-tag">h2</span> &#123;</span><br><span class="language-css">      <span class="hljs-attribute">margin-top</span>: <span class="hljs-number">10px</span>;</span><br><span class="language-css">    &#125;</span><br><span class="language-css">    <span class="hljs-selector-class">.card</span> <span class="hljs-selector-tag">form</span> <span class="hljs-selector-tag">input</span>, <span class="hljs-selector-class">.card</span> <span class="hljs-selector-tag">form</span> <span class="hljs-selector-tag">textarea</span> &#123;</span><br><span class="language-css">      <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;</span><br><span class="language-css">      <span class="hljs-attribute">padding</span>: <span class="hljs-number">8px</span>;</span><br><span class="language-css">      <span class="hljs-attribute">margin</span>: <span class="hljs-number">5px</span> <span class="hljs-number">0</span>;</span><br><span class="language-css">      <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid <span class="hljs-number">#ccc</span>;</span><br><span class="language-css">      <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">5px</span>;</span><br><span class="language-css">    &#125;</span><br><span class="language-css">    <span class="hljs-selector-class">.card</span> <span class="hljs-selector-tag">form</span> <span class="hljs-selector-tag">button</span> &#123;</span><br><span class="language-css">      <span class="hljs-attribute">padding</span>: <span class="hljs-number">10px</span> <span class="hljs-number">20px</span>;</span><br><span class="language-css">      <span class="hljs-attribute">background</span>: <span class="hljs-number">#007bff</span>;</span><br><span class="language-css">      <span class="hljs-attribute">color</span>: white;</span><br><span class="language-css">      <span class="hljs-attribute">border</span>: none;</span><br><span class="language-css">      <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">5px</span>;</span><br><span class="language-css">    &#125;</span><br><span class="language-css">  </span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;card&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;profile.jpg&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;个人头像&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>张三<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>前端开发爱好者<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">form</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>留言：<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">textarea</span> <span class="hljs-attr">rows</span>=<span class="hljs-string">&quot;4&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">textarea</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;submit&quot;</span>&gt;</span>提交<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span><br></code></pre></td></tr></table></figure><hr><h2 id="六、学习建议与工具"><a href="#六、学习建议与工具" class="headerlink" title="六、学习建议与工具"></a>六、学习建议与工具</h2><h3 id="推荐工具"><a href="#推荐工具" class="headerlink" title="推荐工具"></a>推荐工具</h3><ul><li>编码工具：VS Code</li><li>在线预览：CodePen、JSFiddle</li><li>图标库：Font Awesome</li><li>布局参考：Flexbox Froggy（游戏学弹性布局）</li></ul><hr><h2 id="七、总结"><a href="#七、总结" class="headerlink" title="七、总结"></a>七、总结</h2><table><thead><tr><th>项目</th><th>内容</th></tr></thead><tbody><tr><td>HTML</td><td>构建网页结构</td></tr><tr><td>CSS</td><td>美化网页样式</td></tr><tr><td>盒子模型</td><td>理解网页元素占据的空间</td></tr><tr><td>Flex 布局</td><td>实现灵活排列、居中等</td></tr><tr><td>表单、表格、多媒体</td><td>丰富网页内容类型</td></tr></tbody></table>]]></content>
+      
+      
+      <categories>
+          
+          <category> JavaWeb </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 前端 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>32位汇编的一些例题</title>
       <link href="/2025/04/07/32wei/03example/"/>
       <url>/2025/04/07/32wei/03example/</url>
       
-        <content type="html"><![CDATA[<h3 id="1-输出-Hello-World"><a href="#1-输出-Hello-World" class="headerlink" title="1. 输出 Hello World"></a>1. <strong>输出 Hello World</strong></h3><p>这是最基础的字符串输出。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs asm">include Irvine32.inc<br><br>.data<br>hello db &quot;Hello World&quot;, 0<br><br>.code<br>main PROC<br>    mov edx, offset hello<br>    call WriteString<br>    call Crlf    ; 换行<br>    exit<br>main ENDP<br><br>end main<br></code></pre></td></tr></table></figure><h3 id="2-比较-3-个数找最大值"><a href="#2-比较-3-个数找最大值" class="headerlink" title="2. 比较 3 个数找最大值"></a>2. <strong>比较 3 个数找最大值</strong></h3><p>利用 <code>cmp</code> 指令和条件跳转来比较三个数的大小。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs asm">include Irvine32.inc<br><br>.data<br>num1 dd 10<br>num2 dd 20<br>num3 dd 30<br><br>msgMax db &quot;最大值是: &quot;, 0<br><br>.code<br>main PROC<br>    mov eax, [num1]<br>    mov ebx, [num2]<br>    cmp eax, ebx<br>    jge check_num3   ; 如果 num1 &gt;= num2 跳到检查 num3<br><br>    mov eax, ebx     ; 否则 num2 是更大值<br>check_num3:<br>    mov ebx, [num3]<br>    cmp eax, ebx<br>    jge done<br>    mov eax, ebx     ; 如果 num3 大，则更新 eax<br><br>done:<br>    mov edx, offset msgMax<br>    call WriteString<br>    call WriteInt<br>    call Crlf<br>    exit<br>main ENDP<br><br>end main<br></code></pre></td></tr></table></figure><h3 id="3-数组求和"><a href="#3-数组求和" class="headerlink" title="3. 数组求和"></a>3. <strong>数组求和</strong></h3><p>循环遍历数组并累加求和。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs asm">include Irvine32.inc<br><br>.data<br>arr dd 1, 2, 3, 4, 5<br>arrSize dd 5<br>msgSum db &quot;数组和是: &quot;, 0<br><br>.code<br>main PROC<br>    mov esi, offset arr<br>    mov ecx, [arrSize]<br>    xor eax, eax       ; 清空 eax 用于存储和<br><br>sum_loop:<br>    cmp ecx, 0<br>    je sum_done<br>    add eax, [esi]     ; 累加数组元素<br>    add esi, 4         ; 移动到下一个元素<br>    dec ecx<br>    jmp sum_loop<br><br>sum_done:<br>    mov edx, offset msgSum<br>    call WriteString<br>    call WriteInt<br>    call Crlf<br>    exit<br>main ENDP<br><br>end main<br></code></pre></td></tr></table></figure><h3 id="4-判断偶数或奇数"><a href="#4-判断偶数或奇数" class="headerlink" title="4. 判断偶数或奇数"></a>4. <strong>判断偶数或奇数</strong></h3><p>使用 <code>and</code> 或 <code>test</code> 指令判断一个数是偶数还是奇数。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs asm">include Irvine32.inc<br><br>.data<br>num dd 42          ; 输入数字<br>msgEven db &quot;是偶数&quot;, 0<br>msgOdd db &quot;是奇数&quot;, 0<br><br>.code<br>main PROC<br>    mov eax, [num]<br>    test eax, 1         ; 判断最低位是否为 1<br>    jz eve             ; 如果为 0 是偶数<br><br>    mov edx, offset msgOdd<br>    call WriteString<br>    call Crlf<br>    jmp done<br><br>eve:<br>    mov edx, offset msgEven<br>    call WriteString<br>    call Crlf<br><br>done:<br>    exit<br>main ENDP<br><br>end main<br></code></pre></td></tr></table></figure><h3 id="5-输入-3-个整数并找出最小值"><a href="#5-输入-3-个整数并找出最小值" class="headerlink" title="5. 输入 3 个整数并找出最小值"></a>5. <strong>输入 3 个整数并找出最小值</strong></h3><p>使用 <code>ReadInt</code> 读取输入并比较找出最小值。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><code class="hljs asm">include Irvine32.inc<br><br>.data<br>prompt1 db &quot;请输入第一个整数: &quot;, 0<br>prompt2 db &quot;请输入第二个整数: &quot;, 0<br>prompt3 db &quot;请输入第三个整数: &quot;, 0<br>msgMin db &quot;最小值是: &quot;, 0<br><br>num1 dd 0         ; 存储第一个整数<br>num2 dd 0         ; 存储第二个整数<br>num3 dd 0         ; 存储第三个整数<br><br>.code<br><br>main PROC<br>    ; 提示输入第一个整数<br>    mov edx, offset prompt1<br>    call WriteString<br>    call ReadInt<br>    mov [num1], eax  ; 存储第一个整数<br><br>    ; 提示输入第二个整数<br>    mov edx, offset prompt2<br>    call WriteString<br>    call ReadInt<br>    mov [num2], eax  ; 存储第二个整数<br><br>    ; 提示输入第三个整数<br>    mov edx, offset prompt3<br>    call WriteString<br>    call ReadInt<br>    mov [num3], eax  ; 存储第三个整数<br><br>    ; 比较并找出最小值<br>    mov eax, [num1]  ; 将第一个整数加载到 eax<br>    mov ebx, [num2]  ; 将第二个整数加载到 ebx<br>    cmp eax, ebx     ; 比较 num1 和 num2<br>    jle next1        ; 如果 num1 &lt;= num2，跳到 next1<br>    mov eax, ebx     ; 否则，eax = num2<br><br>next1:<br>    mov ecx, [num3]  ; 将第三个整数加载到 ecx<br>    cmp eax, ecx     ; 比较当前的最小值和 num3<br>    jle done         ; 如果当前最小值 &lt;= num3，跳到 done<br>    mov eax, ecx     ; 否则，eax = num3<br><br>done:<br>    ; 输出最小值<br>    mov edx, offset msgMin<br>    call WriteString<br>    call WriteInt    ; 输出最小值<br>    call Crlf<br>    exit<br>main ENDP<br><br>end main<br></code></pre></td></tr></table></figure>]]></content>
+        <content type="html"><![CDATA[<h3 id="1-输出-Hello-World"><a href="#1-输出-Hello-World" class="headerlink" title="1. 输出 Hello World"></a>1. <strong>输出 Hello World</strong></h3><p>这是最基础的字符串输出。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs asm">include Irvine32.inc<br><br>.data<br>hello db &quot;Hello World&quot;, 0<br><br>.code<br>main PROC<br>    mov edx, offset hello<br>    call WriteString<br>    call Crlf    ; 换行<br>    exit<br>main ENDP<br><br>end main<br></code></pre></td></tr></table></figure><h3 id="2-比较-3-个数找最大值"><a href="#2-比较-3-个数找最大值" class="headerlink" title="2. 比较 3 个数找最大值"></a>2. <strong>比较 3 个数找最大值</strong></h3><p>利用 <code>cmp</code> 指令和条件跳转来比较三个数的大小。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs asm">include Irvine32.inc<br><br>.data<br>num1 dd 10<br>num2 dd 20<br>num3 dd 30<br><br>msgMax db &quot;最大值是: &quot;, 0<br><br>.code<br>main PROC<br>    mov eax, [num1]<br>    mov ebx, [num2]<br>    cmp eax, ebx<br>    jge check_num3   ; 如果 num1 &gt;= num2 跳到检查 num3<br><br>    mov eax, ebx     ; 否则 num2 是更大值<br>check_num3:<br>    mov ebx, [num3]<br>    cmp eax, ebx<br>    jge done<br>    mov eax, ebx     ; 如果 num3 大，则更新 eax<br><br>done:<br>    mov edx, offset msgMax<br>    call WriteString<br>    call WriteInt<br>    call Crlf<br>    exit<br>main ENDP<br><br>end main<br></code></pre></td></tr></table></figure><h3 id="3-数组求和"><a href="#3-数组求和" class="headerlink" title="3. 数组求和"></a>3. <strong>数组求和</strong></h3><p>循环遍历数组并累加求和。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs asm">include Irvine32.inc<br><br>.data<br>arr dd 1, 2, 3, 4, 5<br>arrSize dd 5<br>msgSum db &quot;数组和是: &quot;, 0<br><br>.code<br>main PROC<br>    mov esi, offset arr<br>    mov ecx, [arrSize]<br>    xor eax, eax       ; 清空 eax 用于存储和<br><br>sum_loop:<br>    cmp ecx, 0<br>    je sum_done<br>    add eax, [esi]     ; 累加数组元素<br>    add esi, 4         ; 移动到下一个元素<br>    dec ecx<br>    jmp sum_loop<br><br>sum_done:<br>    mov edx, offset msgSum<br>    call WriteString<br>    call WriteInt<br>    call Crlf<br>    exit<br>main ENDP<br><br>end main<br></code></pre></td></tr></table></figure><h3 id="4-判断偶数或奇数"><a href="#4-判断偶数或奇数" class="headerlink" title="4. 判断偶数或奇数"></a>4. <strong>判断偶数或奇数</strong></h3><p>使用 <code>and</code> 或 <code>test</code> 指令判断一个数是偶数还是奇数。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs asm">include Irvine32.inc<br><br>.data<br>num dd 42          ; 输入数字<br>msgEven db &quot;是偶数&quot;, 0<br>msgOdd db &quot;是奇数&quot;, 0<br><br>.code<br>main PROC<br>    mov eax, num<br>    test eax, 1         ; 判断最低位是否为 1<br>    jz eve             ; 如果为 0 是偶数<br><br>    mov edx, offset msgOdd<br>    call WriteString<br>    call Crlf<br>    jmp done<br><br>eve:<br>    mov edx, offset msgEven<br>    call WriteString<br>    call Crlf<br><br>done:<br>    exit<br>main ENDP<br><br>end main<br></code></pre></td></tr></table></figure><h3 id="5-输入-3-个整数并找出最小值"><a href="#5-输入-3-个整数并找出最小值" class="headerlink" title="5. 输入 3 个整数并找出最小值"></a>5. <strong>输入 3 个整数并找出最小值</strong></h3><p>使用 <code>ReadInt</code> 读取输入并比较找出最小值。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><code class="hljs asm">include Irvine32.inc<br><br>.data<br>prompt1 db &quot;请输入第一个整数: &quot;, 0<br>prompt2 db &quot;请输入第二个整数: &quot;, 0<br>prompt3 db &quot;请输入第三个整数: &quot;, 0<br>msgMin db &quot;最小值是: &quot;, 0<br><br>num1 dd 0         ; 存储第一个整数<br>num2 dd 0         ; 存储第二个整数<br>num3 dd 0         ; 存储第三个整数<br><br>.code<br><br>main PROC<br>    ; 提示输入第一个整数<br>    mov edx, offset prompt1<br>    call WriteString<br>    call ReadInt<br>    mov num1, eax  ; 存储第一个整数<br><br>    ; 提示输入第二个整数<br>    mov edx, offset prompt2<br>    call WriteString<br>    call ReadInt<br>    mov num2, eax  ; 存储第二个整数<br><br>    ; 提示输入第三个整数<br>    mov edx, offset prompt3<br>    call WriteString<br>    call ReadInt<br>    mov num3, eax  ; 存储第三个整数<br><br>    ; 比较并找出最小值<br>    mov eax, num1  ; 将第一个整数加载到 eax<br>    mov ebx, num2  ; 将第二个整数加载到 ebx<br>    cmp eax, ebx     ; 比较 num1 和 num2<br>    jle next1        ; 如果 num1 &lt;= num2，跳到 next1<br>    mov eax, ebx     ; 否则，eax = num2<br><br>next1:<br>    mov ecx, num3  ; 将第三个整数加载到 ecx<br>    cmp eax, ecx     ; 比较当前的最小值和 num3<br>    jle done         ; 如果当前最小值 &lt;= num3，跳到 done<br>    mov eax, ecx     ; 否则，eax = num3<br><br>done:<br>    ; 输出最小值<br>    mov edx, offset msgMin<br>    call WriteString<br>    call WriteInt    ; 输出最小值<br>    call Crlf<br>    exit<br>main ENDP<br><br>end main<br></code></pre></td></tr></table></figure>]]></content>
       
       
       <categories>
@@ -90,8 +115,6 @@
           
           <category> Java </category>
           
-          <category> 高级技术 </category>
-          
       </categories>
       
       
@@ -116,8 +139,6 @@
       <categories>
           
           <category> Java </category>
-          
-          <category> 高级技术 </category>
           
       </categories>
       
@@ -144,8 +165,6 @@
           
           <category> Java </category>
           
-          <category> 高级技术 </category>
-          
       </categories>
       
       
@@ -170,8 +189,6 @@
       <categories>
           
           <category> Java </category>
-          
-          <category> 高级技术 </category>
           
       </categories>
       
@@ -198,10 +215,6 @@
           
           <category> Java </category>
           
-          <category> 加强 </category>
-          
-          <category> 网络编程 </category>
-          
       </categories>
       
       
@@ -226,10 +239,6 @@
       <categories>
           
           <category> Java </category>
-          
-          <category> 加强 </category>
-          
-          <category> 网络编程 </category>
           
       </categories>
       
@@ -256,10 +265,6 @@
           
           <category> Java </category>
           
-          <category> 加强 </category>
-          
-          <category> 网络编程 </category>
-          
       </categories>
       
       
@@ -284,10 +289,6 @@
       <categories>
           
           <category> Java </category>
-          
-          <category> 加强 </category>
-          
-          <category> 网络编程 </category>
           
       </categories>
       
@@ -314,10 +315,6 @@
           
           <category> Java </category>
           
-          <category> 加强 </category>
-          
-          <category> 网络编程 </category>
-          
       </categories>
       
       
@@ -342,10 +339,6 @@
       <categories>
           
           <category> Java </category>
-          
-          <category> 加强 </category>
-          
-          <category> 网络编程 </category>
           
       </categories>
       
@@ -372,10 +365,6 @@
           
           <category> Java </category>
           
-          <category> 加强 </category>
-          
-          <category> 网络编程 </category>
-          
       </categories>
       
       
@@ -400,10 +389,6 @@
       <categories>
           
           <category> Java </category>
-          
-          <category> 加强 </category>
-          
-          <category> 多线程 </category>
           
       </categories>
       
@@ -430,10 +415,6 @@
           
           <category> Java </category>
           
-          <category> 加强 </category>
-          
-          <category> 多线程 </category>
-          
       </categories>
       
       
@@ -458,10 +439,6 @@
       <categories>
           
           <category> Java </category>
-          
-          <category> 加强 </category>
-          
-          <category> 多线程 </category>
           
       </categories>
       
@@ -488,10 +465,6 @@
           
           <category> Java </category>
           
-          <category> 加强 </category>
-          
-          <category> 多线程 </category>
-          
       </categories>
       
       
@@ -516,10 +489,6 @@
       <categories>
           
           <category> Java </category>
-          
-          <category> 加强 </category>
-          
-          <category> 多线程 </category>
           
       </categories>
       
@@ -577,12 +546,6 @@
           
           <category> Java </category>
           
-          <category> 加强 </category>
-          
-          <category> File-IO流 </category>
-          
-          <category> IO流 </category>
-          
       </categories>
       
       
@@ -607,12 +570,6 @@
       <categories>
           
           <category> Java </category>
-          
-          <category> 加强 </category>
-          
-          <category> File-IO流 </category>
-          
-          <category> IO流 </category>
           
       </categories>
       
@@ -639,12 +596,6 @@
           
           <category> Java </category>
           
-          <category> 加强 </category>
-          
-          <category> File-IO流 </category>
-          
-          <category> IO流 </category>
-          
       </categories>
       
       
@@ -669,12 +620,6 @@
       <categories>
           
           <category> Java </category>
-          
-          <category> 加强 </category>
-          
-          <category> File-IO流 </category>
-          
-          <category> 字符集 </category>
           
       </categories>
       
@@ -701,12 +646,6 @@
           
           <category> Java </category>
           
-          <category> 加强 </category>
-          
-          <category> File-IO流 </category>
-          
-          <category> 方法递归 </category>
-          
       </categories>
       
       
@@ -731,12 +670,6 @@
       <categories>
           
           <category> Java </category>
-          
-          <category> 加强 </category>
-          
-          <category> File-IO流 </category>
-          
-          <category> 方法递归 </category>
           
       </categories>
       
@@ -763,12 +696,6 @@
           
           <category> Java </category>
           
-          <category> 加强 </category>
-          
-          <category> File-IO流 </category>
-          
-          <category> File </category>
-          
       </categories>
       
       
@@ -793,12 +720,6 @@
       <categories>
           
           <category> Java </category>
-          
-          <category> 加强 </category>
-          
-          <category> Collection与Map </category>
-          
-          <category> Stream </category>
           
       </categories>
       
@@ -825,12 +746,6 @@
           
           <category> Java </category>
           
-          <category> 加强 </category>
-          
-          <category> Collection与Map </category>
-          
-          <category> Map </category>
-          
       </categories>
       
       
@@ -855,12 +770,6 @@
       <categories>
           
           <category> Java </category>
-          
-          <category> 加强 </category>
-          
-          <category> Collection与Map </category>
-          
-          <category> Collection </category>
           
       </categories>
       
@@ -887,12 +796,6 @@
           
           <category> Java </category>
           
-          <category> 加强 </category>
-          
-          <category> Collection与Map </category>
-          
-          <category> Collection </category>
-          
       </categories>
       
       
@@ -917,12 +820,6 @@
       <categories>
           
           <category> Java </category>
-          
-          <category> 加强 </category>
-          
-          <category> Collection与Map </category>
-          
-          <category> Collection </category>
           
       </categories>
       
@@ -949,12 +846,6 @@
           
           <category> Java </category>
           
-          <category> 加强 </category>
-          
-          <category> Collection与Map </category>
-          
-          <category> Collection </category>
-          
       </categories>
       
       
@@ -979,10 +870,6 @@
       <categories>
           
           <category> Java </category>
-          
-          <category> 加强 </category>
-          
-          <category> 常用API </category>
           
       </categories>
       
@@ -1009,10 +896,6 @@
           
           <category> Java </category>
           
-          <category> 加强 </category>
-          
-          <category> 常用API </category>
-          
       </categories>
       
       
@@ -1037,10 +920,6 @@
       <categories>
           
           <category> Java </category>
-          
-          <category> 加强 </category>
-          
-          <category> 常用API </category>
           
       </categories>
       
@@ -1067,10 +946,6 @@
           
           <category> Java </category>
           
-          <category> 加强 </category>
-          
-          <category> 函数式编程 </category>
-          
       </categories>
       
       
@@ -1095,10 +970,6 @@
       <categories>
           
           <category> Java </category>
-          
-          <category> 加强 </category>
-          
-          <category> 函数式编程 </category>
           
       </categories>
       
@@ -1125,10 +996,6 @@
           
           <category> Java </category>
           
-          <category> 加强 </category>
-          
-          <category> 函数式编程 </category>
-          
       </categories>
       
       
@@ -1154,14 +1021,12 @@
           
           <category> Java </category>
           
-          <category> 基础 </category>
-          
       </categories>
       
       
         <tags>
             
-            <tag> 基础 </tag>
+            <tag> Java基础 </tag>
             
         </tags>
       
@@ -1181,14 +1046,12 @@
           
           <category> Java </category>
           
-          <category> 基础 </category>
-          
       </categories>
       
       
         <tags>
             
-            <tag> 基础 </tag>
+            <tag> Java基础 </tag>
             
         </tags>
       
@@ -1208,14 +1071,12 @@
           
           <category> Java </category>
           
-          <category> 基础 </category>
-          
       </categories>
       
       
         <tags>
             
-            <tag> 基础 </tag>
+            <tag> Java基础 </tag>
             
         </tags>
       
@@ -1235,14 +1096,12 @@
           
           <category> Java </category>
           
-          <category> 基础 </category>
-          
       </categories>
       
       
         <tags>
             
-            <tag> 基础 </tag>
+            <tag> Java基础 </tag>
             
         </tags>
       
@@ -1262,14 +1121,12 @@
           
           <category> Java </category>
           
-          <category> 基础 </category>
-          
       </categories>
       
       
         <tags>
             
-            <tag> 基础 </tag>
+            <tag> Java基础 </tag>
             
         </tags>
       
@@ -1289,14 +1146,12 @@
           
           <category> Java </category>
           
-          <category> 基础 </category>
-          
       </categories>
       
       
         <tags>
             
-            <tag> 基础 </tag>
+            <tag> Java基础 </tag>
             
         </tags>
       
@@ -1316,14 +1171,12 @@
           
           <category> Java </category>
           
-          <category> 基础 </category>
-          
       </categories>
       
       
         <tags>
             
-            <tag> 基础 </tag>
+            <tag> Java基础 </tag>
             
         </tags>
       
@@ -1343,14 +1196,12 @@
           
           <category> Java </category>
           
-          <category> 基础 </category>
-          
       </categories>
       
       
         <tags>
             
-            <tag> 基础 </tag>
+            <tag> Java基础 </tag>
             
         </tags>
       
@@ -1390,73 +1241,5 @@
     
     
   
-  
-    
-    
-    <entry>
-      <title>关于</title>
-      <link href="/about/index.html"/>
-      <url>/about/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>分类</title>
-      <link href="/categories/index.html"/>
-      <url>/categories/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>友链</title>
-      <link href="/link/index.html"/>
-      <url>/link/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>音乐</title>
-      <link href="/music/index.html"/>
-      <url>/music/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>标签</title>
-      <link href="/tags/index.html"/>
-      <url>/tags/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>电影</title>
-      <link href="/movies/index.html"/>
-      <url>/movies/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    
   
 </search>
